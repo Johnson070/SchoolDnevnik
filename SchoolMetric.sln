@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolMetric", "SchoolMetric\SchoolMetric.csproj", "{01F15C2F-851A-4C37-B071-6621943B176F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Setup|Any CPU = Setup|Any CPU
+		SetupPortable|Any CPU = SetupPortable|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01F15C2F-851A-4C37-B071-6621943B176F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F15C2F-851A-4C37-B071-6621943B176F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F15C2F-851A-4C37-B071-6621943B176F}.Setup|Any CPU.ActiveCfg = Setup|Any CPU
+		{01F15C2F-851A-4C37-B071-6621943B176F}.Setup|Any CPU.Build.0 = Setup|Any CPU
+		{01F15C2F-851A-4C37-B071-6621943B176F}.SetupPortable|Any CPU.ActiveCfg = SetupPortable|Any CPU
+		{01F15C2F-851A-4C37-B071-6621943B176F}.SetupPortable|Any CPU.Build.0 = SetupPortable|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3DF00A5-0156-44B8-AE84-DFE50F2F79D4}
+	EndGlobalSection
+EndGlobal
