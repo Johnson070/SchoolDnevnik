@@ -573,10 +573,10 @@ namespace SchoolMetric
 
         private void updateFilterTable(object sender, EventArgs e)
         {
-            filterTable(Convert.ToSingle(toolStripComboBox2.Text), Convert.ToSingle(toolStripComboBox1.Text), toolStripMenuItem2.Checked, toolStripMenuItem3.Checked, toolStripMenuItem4.Checked, filterBallChecked.Checked, dataRow.Length, positive.Checked, neutral.Checked, negative.Checked);
+            filterTable(Convert.ToSingle(toolStripComboBox2.Text), Convert.ToSingle(toolStripComboBox1.Text), twoMark.Checked, threeMark.Checked, fourMark.Checked, fiveMark.Checked, dataRow.Length, positive.Checked, neutral.Checked, negative.Checked);
 
-            поВозростаниюToolStripMenuItem1.Checked = false;
-            поУбываниюToolStripMenuItem1.Checked = false;
+            upValues.Checked = false;
+            downValues.Checked = false;
         }
 
         private void выбратьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -629,25 +629,25 @@ namespace SchoolMetric
         {
             toolStripComboBox1.SelectedIndex = 0;
             toolStripComboBox2.SelectedIndex = 0;
-            toolStripMenuItem2.Checked = true;
-            toolStripMenuItem3.Checked = true;
-            toolStripMenuItem4.Checked = true;
-            filterBallChecked.Checked = true;
-            поВозростаниюToolStripMenuItem1.Checked = false;
-            поУбываниюToolStripMenuItem1.Checked = false;
+            twoMark.Checked = true;
+            threeMark.Checked = true;
+            fourMark.Checked = true;
+            fiveMark.Checked = true;
+            upValues.Checked = false;
+            downValues.Checked = false;
 
-            filterTable(Convert.ToSingle(toolStripComboBox2.Text), Convert.ToSingle(toolStripComboBox1.Text), toolStripMenuItem2.Checked, toolStripMenuItem3.Checked, toolStripMenuItem4.Checked, filterBallChecked.Checked, dataRow.Length, positive.Checked, neutral.Checked, negative.Checked);
+            filterTable(Convert.ToSingle(toolStripComboBox2.Text), Convert.ToSingle(toolStripComboBox1.Text), twoMark.Checked, threeMark.Checked, fourMark.Checked, fiveMark.Checked, dataRow.Length, positive.Checked, neutral.Checked, negative.Checked);
         }
 
         private void поВозростаниюToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            поУбываниюToolStripMenuItem1.Checked = false;
+            downValues.Checked = false;
             dataGridView1.Sort(dataGridView1.Columns["ball"], ListSortDirection.Descending);
         }
 
         private void поУбываниюToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            поВозростаниюToolStripMenuItem1.Checked = false;
+            upValues.Checked = false;
             dataGridView1.Sort(dataGridView1.Columns["ball"], ListSortDirection.Ascending);
         }
     }

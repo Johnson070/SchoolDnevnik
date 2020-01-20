@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addBallsBuffer));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.insertMarks = new System.Windows.Forms.Button();
             this.balls = new System.Windows.Forms.RichTextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.removeValue = new System.Windows.Forms.Button();
-            this.weights = new System.Windows.Forms.ComboBox();
             this.copyAndPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.вставитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.скопироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.removeValue = new System.Windows.Forms.Button();
+            this.weights = new System.Windows.Forms.ComboBox();
             this.addValue = new System.Windows.Forms.Button();
             this.copyAndPaste.SuspendLayout();
             this.SuspendLayout();
@@ -53,15 +53,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Оценки:";
             // 
-            // button1
+            // insertMarks
             // 
-            this.button1.Location = new System.Drawing.Point(12, 134);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(420, 66);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Вставить в таблицу";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.insertMarks.Location = new System.Drawing.Point(12, 134);
+            this.insertMarks.Name = "insertMarks";
+            this.insertMarks.Size = new System.Drawing.Size(420, 66);
+            this.insertMarks.TabIndex = 4;
+            this.insertMarks.Text = "Вставить в таблицу";
+            this.insertMarks.UseVisualStyleBackColor = true;
+            this.insertMarks.Click += new System.EventHandler(this.button1_Click);
             // 
             // balls
             // 
@@ -74,6 +74,30 @@
             this.balls.Text = "";
             this.balls.WordWrap = false;
             this.balls.TextChanged += new System.EventHandler(this.balls_TextChanged_1);
+            // 
+            // copyAndPaste
+            // 
+            this.copyAndPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.вставитьToolStripMenuItem,
+            this.скопироватьToolStripMenuItem});
+            this.copyAndPaste.Name = "copyAndPaste";
+            this.copyAndPaste.Size = new System.Drawing.Size(189, 48);
+            // 
+            // вставитьToolStripMenuItem
+            // 
+            this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
+            this.вставитьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.вставитьToolStripMenuItem.Text = "Вставить";
+            this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.вставитьToolStripMenuItem_Click);
+            // 
+            // скопироватьToolStripMenuItem
+            // 
+            this.скопироватьToolStripMenuItem.Name = "скопироватьToolStripMenuItem";
+            this.скопироватьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.скопироватьToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.скопироватьToolStripMenuItem.Text = "Скопировать";
+            this.скопироватьToolStripMenuItem.Click += new System.EventHandler(this.скопироватьToolStripMenuItem_Click);
             // 
             // checkBox1
             // 
@@ -110,30 +134,6 @@
             this.weights.Size = new System.Drawing.Size(198, 28);
             this.weights.TabIndex = 7;
             // 
-            // copyAndPaste
-            // 
-            this.copyAndPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.вставитьToolStripMenuItem,
-            this.скопироватьToolStripMenuItem});
-            this.copyAndPaste.Name = "copyAndPaste";
-            this.copyAndPaste.Size = new System.Drawing.Size(189, 48);
-            // 
-            // вставитьToolStripMenuItem
-            // 
-            this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            this.вставитьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.вставитьToolStripMenuItem.Text = "Вставить";
-            this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.вставитьToolStripMenuItem_Click);
-            // 
-            // скопироватьToolStripMenuItem
-            // 
-            this.скопироватьToolStripMenuItem.Name = "скопироватьToolStripMenuItem";
-            this.скопироватьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.скопироватьToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.скопироватьToolStripMenuItem.Text = "Скопировать";
-            this.скопироватьToolStripMenuItem.Click += new System.EventHandler(this.скопироватьToolStripMenuItem_Click);
-            // 
             // addValue
             // 
             this.addValue.Enabled = false;
@@ -154,7 +154,7 @@
             this.Controls.Add(this.weights);
             this.Controls.Add(this.removeValue);
             this.Controls.Add(this.balls);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.insertMarks);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -174,7 +174,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button insertMarks;
         public System.Windows.Forms.RichTextBox balls;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button removeValue;

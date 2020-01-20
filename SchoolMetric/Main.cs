@@ -45,9 +45,9 @@ namespace SchoolMetric
             srBall.DisplayIndex = 9999;
             srBall.DefaultCellStyle.Font = Properties.Settings.Default.fontBall;
 
-            dataGridView1.AllowUserToAddRows = false;
+            marksTable.AllowUserToAddRows = false;
 
-            dataGridView1.Columns.RemoveAt(dataGridView1.Columns.Count - 1);
+            marksTable.Columns.RemoveAt(marksTable.Columns.Count - 1);
 
             for (int i = 0; i < col; i++)
             {
@@ -68,11 +68,11 @@ namespace SchoolMetric
                 weight.CellTemplate = new DataGridViewTextBoxCell();
                 weight.DefaultCellStyle.Font = Properties.Settings.Default.fontWeight;
 
-                dataGridView1.Columns.Add(ball);
-                dataGridView1.Columns.Add(weight);
+                marksTable.Columns.Add(ball);
+                marksTable.Columns.Add(weight);
             }
 
-            dataGridView1.Columns.Add(srBall);
+            marksTable.Columns.Add(srBall);
         }
 
         private void columnSet(bool genRows, List<string> _pred)
@@ -110,14 +110,14 @@ namespace SchoolMetric
             weight.Name = "costs";
             weight.CellTemplate = new DataGridViewTextBoxCell();
 
-            dataGridView1.AllowUserToAddRows = false;
+            marksTable.AllowUserToAddRows = false;
 
             /*=====================================*/
 
-            dataGridView1.Columns.Add(predmet);
-            dataGridView1.Columns.Add(ball);
-            dataGridView1.Columns.Add(weight);
-            dataGridView1.Columns.Add(srBall);
+            marksTable.Columns.Add(predmet);
+            marksTable.Columns.Add(ball);
+            marksTable.Columns.Add(weight);
+            marksTable.Columns.Add(srBall);
 
             /*=====================================*/
 
@@ -126,8 +126,8 @@ namespace SchoolMetric
                 for (int i = 0; i < _pred.Count; ++i)
                 {
                     //Добавляем строку, указывая значения каждой ячейки по имени (можно использовать индекс 0, 1, 2 вместо имен)
-                    dataGridView1.Rows.Add();
-                    dataGridView1["name", dataGridView1.Rows.Count - 1].Value = _pred[i];
+                    marksTable.Rows.Add();
+                    marksTable["name", marksTable.Rows.Count - 1].Value = _pred[i];
                 }
             }
         }
@@ -169,16 +169,16 @@ namespace SchoolMetric
 
             //dataGridView1.ContextMenuStrip = actionTable;
 
-            dataGridView1.Font = Properties.Settings.Default.font;
+            marksTable.Font = Properties.Settings.Default.font;
         }
 
         public void resultBall()
         {
-            for (int j = 0; j < dataGridView1.Rows.Count; j++)
+            for (int j = 0; j < marksTable.Rows.Count; j++)
             {
                 float result = 0;
-                int[] weight = new int[(dataGridView1.Columns.Count - 2) / 2];
-                int[] ball = new int[(dataGridView1.Columns.Count - 2) / 2];
+                int[] weight = new int[(marksTable.Columns.Count - 2) / 2];
+                int[] ball = new int[(marksTable.Columns.Count - 2) / 2];
 
                 int countBall = 0, countWeight = 0;
 
@@ -195,39 +195,39 @@ namespace SchoolMetric
                 //}
 
 
-                for (int i = 1; i < dataGridView1.Columns.Count - 1; i++)
+                for (int i = 1; i < marksTable.Columns.Count - 1; i++)
                 {
-                    if (dataGridView1[i, j].Value != null && dataGridView1[i, j].Value != "")
+                    if (marksTable[i, j].Value != null && marksTable[i, j].Value != "")
                     {
                         if (i % 2 != 0)
                         {
-                            ball[countBall] = Convert.ToInt32(dataGridView1[i, j].Value);
+                            ball[countBall] = Convert.ToInt32(marksTable[i, j].Value);
                             countBall++;
 
-                            int numberToColor = Convert.ToInt32(dataGridView1[i, j].Value);
+                            int numberToColor = Convert.ToInt32(marksTable[i, j].Value);
 
                             if (Properties.Settings.Default.colorIndicateOn == true)
                             {
                                 if (numberToColor == 5)
                                 {
-                                    dataGridView1[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
+                                    marksTable[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
                                 }
                                 else if (numberToColor == 4)
                                 {
-                                    dataGridView1[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
+                                    marksTable[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
                                 }
                                 else if (numberToColor == 3)
                                 {
-                                    dataGridView1[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
+                                    marksTable[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
                                 }
                                 else if (numberToColor == 2)
                                 {
-                                    dataGridView1[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
+                                    marksTable[i, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
                                 }
                             }
                             else
                             {
-                                dataGridView1[i, j].Style.BackColor = Color.FromArgb(179, 179, 179);
+                                marksTable[i, j].Style.BackColor = Color.FromArgb(179, 179, 179);
                             }
 
                             //dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -235,53 +235,53 @@ namespace SchoolMetric
                         }
                         else
                         {
-                            if (dataGridView1[i, j].Value.ToString() == "1" && Properties.Settings.Default.oneWeight)
+                            if (marksTable[i, j].Value.ToString() == "1" && Properties.Settings.Default.oneWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.oneText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.oneText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "2" && Properties.Settings.Default.twoWeight)
+                            else if (marksTable[i, j].Value.ToString() == "2" && Properties.Settings.Default.twoWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.twoText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.twoText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "3" && Properties.Settings.Default.threeWeight)
+                            else if (marksTable[i, j].Value.ToString() == "3" && Properties.Settings.Default.threeWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.threeText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.threeText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "4" && Properties.Settings.Default.fourWeight)
+                            else if (marksTable[i, j].Value.ToString() == "4" && Properties.Settings.Default.fourWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.fourText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.fourText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "5" && Properties.Settings.Default.fiveWeight)
+                            else if (marksTable[i, j].Value.ToString() == "5" && Properties.Settings.Default.fiveWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.fiveText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.fiveText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "6" && Properties.Settings.Default.sixWeight)
+                            else if (marksTable[i, j].Value.ToString() == "6" && Properties.Settings.Default.sixWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.sixText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.sixText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "7" && Properties.Settings.Default.sevenWeight)
+                            else if (marksTable[i, j].Value.ToString() == "7" && Properties.Settings.Default.sevenWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.sevenText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.sevenText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "8" && Properties.Settings.Default.eightWeight)
+                            else if (marksTable[i, j].Value.ToString() == "8" && Properties.Settings.Default.eightWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.eightText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.eightText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "9" && Properties.Settings.Default.nineWeight)
+                            else if (marksTable[i, j].Value.ToString() == "9" && Properties.Settings.Default.nineWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.nineText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.nineText;
                             }
-                            else if (dataGridView1[i, j].Value.ToString() == "10" && Properties.Settings.Default.tenWeight)
+                            else if (marksTable[i, j].Value.ToString() == "10" && Properties.Settings.Default.tenWeight)
                             {
-                                dataGridView1[i, j].ToolTipText = Properties.Settings.Default.tenText;
+                                marksTable[i, j].ToolTipText = Properties.Settings.Default.tenText;
                             }
                             else
                             {
-                                dataGridView1[i, j].ToolTipText = "";
+                                marksTable[i, j].ToolTipText = "";
                             }
 
 
-                            weight[countWeight] = Convert.ToInt32(dataGridView1[i, j].Value);
+                            weight[countWeight] = Convert.ToInt32(marksTable[i, j].Value);
                             //dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                             //dataGridView1.AutoResizeRow(j, DataGridViewAutoSizeRowMode.AllCells);
                             countWeight++;
@@ -289,18 +289,18 @@ namespace SchoolMetric
                     }
                     else
                     {
-                        dataGridView1[i, j].Value = null;
+                        marksTable[i, j].Value = null;
 
                         if (i % 2 != 0)
                         {
-                            dataGridView1[i, j].Style.BackColor = Color.FromArgb(179, 179, 179);
+                            marksTable[i, j].Style.BackColor = Color.FromArgb(179, 179, 179);
                         }
                     }
                 }
 
                 float resultBall = 0, resultWeight = 0;
 
-                for (int i = 0; i < (dataGridView1.Columns.Count / 2) - 1; i++)
+                for (int i = 0; i < (marksTable.Columns.Count / 2) - 1; i++)
                 {
                     if (ball[i] != 0 && weight[i] != 0)
                     {
@@ -316,7 +316,7 @@ namespace SchoolMetric
                     result = resultBall / resultWeight;
                 }
 
-                dataGridView1[dataGridView1.Columns.Count - 1, j].Value = result.ToString("N2");
+                marksTable[marksTable.Columns.Count - 1, j].Value = result.ToString("N2");
 
                 float[] ballStep = new float[3] { Properties.Settings.Default.twoStep, Properties.Settings.Default.threeStep, Properties.Settings.Default.fourStep };
 
@@ -324,42 +324,42 @@ namespace SchoolMetric
                 {
                     if (result >= ballStep[2])
                     {
-                        dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
+                        marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (result < ballStep[2] && result >= ballStep[1])
                     {
-                        dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
+                        marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (result < ballStep[1] && result >= ballStep[0])
                     {
-                        dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
+                        marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (result < ballStep[0] && result >= 2)
                     {
-                        dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
+                        marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else
                     {
-                        dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.White;
+                        marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.White;
 
                     }
                 }
                 else
                 {
-                    dataGridView1[dataGridView1.Columns.Count - 1, j].Style.BackColor = Color.White;
+                    marksTable[marksTable.Columns.Count - 1, j].Style.BackColor = Color.White;
                 }
 
                 result = 0;
             }
 
-            for (int k = 0; k < dataGridView1.Columns.Count; k++)
+            for (int k = 0; k < marksTable.Columns.Count; k++)
             {
-                dataGridView1.AutoResizeColumn(k, DataGridViewAutoSizeColumnMode.DisplayedCells);
+                marksTable.AutoResizeColumn(k, DataGridViewAutoSizeColumnMode.DisplayedCells);
             }
 
-            for (int k = 0; k < dataGridView1.Rows.Count; k++)
+            for (int k = 0; k < marksTable.Rows.Count; k++)
             {
-                dataGridView1.AutoResizeRow(k, DataGridViewAutoSizeRowMode.AllCells);
+                marksTable.AutoResizeRow(k, DataGridViewAutoSizeRowMode.AllCells);
             }
         }
 
@@ -367,24 +367,24 @@ namespace SchoolMetric
         {
             startEdit = true;
 
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < marksTable.Rows.Count; i++)
             {
-                for (int j = 1; j < dataGridView1.Columns.Count - 1; j++)
+                for (int j = 1; j < marksTable.Columns.Count - 1; j++)
                 {
                     try
                     {
-                        if (dataGridView1[j, i].Value.ToString().Length > 1 && dataGridView1[j, i].Value.ToString() != "10")
+                        if (marksTable[j, i].Value.ToString().Length > 1 && marksTable[j, i].Value.ToString() != "10")
                         {
-                            dataGridView1[j, i].Value = null;
+                            marksTable[j, i].Value = null;
                         }
                     }
                     catch { }
 
                     try
                     {
-                        if (!char.IsDigit(Convert.ToChar(dataGridView1[j, i].Value)) && dataGridView1[j, i].Value.ToString() != "10")
+                        if (!char.IsDigit(Convert.ToChar(marksTable[j, i].Value)) && marksTable[j, i].Value.ToString() != "10")
                         {
-                            dataGridView1[j, i].Value = null;
+                            marksTable[j, i].Value = null;
                         }
                     }
                     catch { }
@@ -398,39 +398,39 @@ namespace SchoolMetric
 
         private void updateCell()
         {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < marksTable.Rows.Count; i++)
             {
-                for (int j = 1; j < dataGridView1.Columns.Count - 1; j++)
+                for (int j = 1; j < marksTable.Columns.Count - 1; j++)
                 {
                     if (j % 2 != 0)
                     {
-                        if (dataGridView1[j, i].Value != null && dataGridView1[j + 1, i].Value == null)
+                        if (marksTable[j, i].Value != null && marksTable[j + 1, i].Value == null)
                         {
-                            dataGridView1[j + 1, i].ErrorText = "Введите значение!";
+                            marksTable[j + 1, i].ErrorText = "Введите значение!";
                         }
-                        else if (dataGridView1[j, i].Value == null && dataGridView1[j + 1, i].Value != null)
+                        else if (marksTable[j, i].Value == null && marksTable[j + 1, i].Value != null)
                         {
-                            dataGridView1[j, i].ErrorText = "Введите значение!";
+                            marksTable[j, i].ErrorText = "Введите значение!";
                         }
                         else
                         {
-                            dataGridView1[j, i].ErrorText = "";
+                            marksTable[j, i].ErrorText = "";
                         }
 
                     }
                     else
                     {
-                        if (dataGridView1[j, i].Value != null && dataGridView1[j - 1, i].Value == null)
+                        if (marksTable[j, i].Value != null && marksTable[j - 1, i].Value == null)
                         {
-                            dataGridView1[j - 1, i].ErrorText = "Введите значение!";
+                            marksTable[j - 1, i].ErrorText = "Введите значение!";
                         }
-                        else if (dataGridView1[j, i].Value == null && dataGridView1[j - 1, i].Value != null)
+                        else if (marksTable[j, i].Value == null && marksTable[j - 1, i].Value != null)
                         {
-                            dataGridView1[j, i].ErrorText = "Введите значение!";
+                            marksTable[j, i].ErrorText = "Введите значение!";
                         }
                         else
                         {
-                            dataGridView1[j, i].ErrorText = "";
+                            marksTable[j, i].ErrorText = "";
                         }
                     }
                 }
@@ -468,30 +468,30 @@ namespace SchoolMetric
 
         private void генерироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < marksTable.Rows.Count; i++)
             {
-                for (int f = 1; f < dataGridView1.Columns.Count - 1; f++)
+                for (int f = 1; f < marksTable.Columns.Count - 1; f++)
                 {
                     if (f % 2 != 0)
                     {
-                        if (dataGridView1[f, i].Value != null && dataGridView1[f + 1, i].Value == null)
+                        if (marksTable[f, i].Value != null && marksTable[f + 1, i].Value == null)
                         {
-                            dataGridView1[f, i].Value = null;
+                            marksTable[f, i].Value = null;
                         }
-                        else if (dataGridView1[f, i].Value == null && dataGridView1[f + 1, i].Value != null)
+                        else if (marksTable[f, i].Value == null && marksTable[f + 1, i].Value != null)
                         {
-                            dataGridView1[f + 1, i].Value = null;
+                            marksTable[f + 1, i].Value = null;
                         }
                     }
                     else
                     {
-                        if (dataGridView1[f, i].Value != null && dataGridView1[f - 1, i].Value == null)
+                        if (marksTable[f, i].Value != null && marksTable[f - 1, i].Value == null)
                         {
-                            dataGridView1[f, i].Value = null;
+                            marksTable[f, i].Value = null;
                         }
-                        else if (dataGridView1[f, i].Value == null && dataGridView1[f - 1, i].Value != null)
+                        else if (marksTable[f, i].Value == null && marksTable[f - 1, i].Value != null)
                         {
-                            dataGridView1[f - 1, i].Value = null;
+                            marksTable[f - 1, i].Value = null;
                         }
                     }
                 }
@@ -543,40 +543,40 @@ namespace SchoolMetric
                 }
 
 
-                int j = dataGridView1.CurrentRow.Index;
+                int j = marksTable.CurrentRow.Index;
 
                 float result = 0;
-                int[] weight = new int[(dataGridView1.Columns.Count - 2) / 2];
-                int[] ball = new int[(dataGridView1.Columns.Count - 2) / 2];
+                int[] weight = new int[(marksTable.Columns.Count - 2) / 2];
+                int[] ball = new int[(marksTable.Columns.Count - 2) / 2];
 
                 int countBall = 0, countWeight = 0;
 
-                for (int i = 1; i < dataGridView1.Columns.Count - 1; i++)
+                for (int i = 1; i < marksTable.Columns.Count - 1; i++)
                 {
-                    if (dataGridView1[i, j].Value != null && dataGridView1[i, j].Value != "")
+                    if (marksTable[i, j].Value != null && marksTable[i, j].Value != "")
                     {
                         if (i % 2 != 0)
                         {
-                            ball[countBall] = Convert.ToInt32(dataGridView1[i, j].Value);
+                            ball[countBall] = Convert.ToInt32(marksTable[i, j].Value);
                             countBall++;
                         }
                         else
                         {
-                            weight[countWeight] = Convert.ToInt32(dataGridView1[i, j].Value);
+                            weight[countWeight] = Convert.ToInt32(marksTable[i, j].Value);
                             countWeight++;
                         }
                         //result += Convert.ToInt32(dataGridView1[i, j].Value.ToString());
                     }
                 }
 
-                int ost = dataGridView1.Columns.Count + colBalls - 2;
+                int ost = marksTable.Columns.Count + colBalls - 2;
                 float[] outSrBall = new float[Convert.ToInt32(Math.Pow(4, colBalls))];
 
                 for (int f = 0; f < Convert.ToInt32(Math.Pow(4, colBalls)); f++)
                 {
                     float resultBall = 0, resultWeight = 0;
-                    int[] balls = new int[dataGridView1.Columns.Count + colBalls];
-                    int[] weights = new int[dataGridView1.Columns.Count + colBalls];
+                    int[] balls = new int[marksTable.Columns.Count + colBalls];
+                    int[] weights = new int[marksTable.Columns.Count + colBalls];
 
 
                     int countBalls = 0;
@@ -595,7 +595,7 @@ namespace SchoolMetric
                         countBalls += 2;
                     }
 
-                    for (int i = 0; i < (dataGridView1.Columns.Count - 2) / 2; i++)
+                    for (int i = 0; i < (marksTable.Columns.Count - 2) / 2; i++)
                     {
                         if (ball[i] != 0 && weight[i] != 0)
                         {
@@ -627,13 +627,13 @@ namespace SchoolMetric
 
                 }
 
-                int[] dataRow = new int[dataGridView1.Columns.Count - 2];
+                int[] dataRow = new int[marksTable.Columns.Count - 2];
 
-                for (int i = 0; i < dataGridView1.Columns.Count - 2; i++)
+                for (int i = 0; i < marksTable.Columns.Count - 2; i++)
                 {
                     try
                     {
-                        dataRow[i] = Convert.ToInt32(dataGridView1[i + 1, j].Value);
+                        dataRow[i] = Convert.ToInt32(marksTable[i + 1, j].Value);
                     }
                     catch
                     {
@@ -641,9 +641,9 @@ namespace SchoolMetric
                     }
                 }
 
-                selectBalls frm2 = new selectBalls(j, poslBall, colBallSr, outSrBall, dataRow, Convert.ToSingle(dataGridView1[dataGridView1.Columns.Count - 1, j].Value),frm1.typeIndividual);
+                selectBalls frm2 = new selectBalls(j, poslBall, colBallSr, outSrBall, dataRow, Convert.ToSingle(marksTable[marksTable.Columns.Count - 1, j].Value),frm1.typeIndividual);
 
-                frm2.Text = dataGridView1["name", j].Value.ToString();
+                frm2.Text = marksTable["name", j].Value.ToString();
 
                 frm2.ShowDialog();
 
@@ -653,11 +653,11 @@ namespace SchoolMetric
                 if (selectedBalls != null)
                 {
                     int countRepeat = 0;
-                    for (int i = dataGridView1.Columns.Count - 2; i >= 0; i--)
+                    for (int i = marksTable.Columns.Count - 2; i >= 0; i--)
                     {
                         try
                         {
-                            if (dataGridView1[i, j].Value == null)
+                            if (marksTable[i, j].Value == null)
                             {
                                 countRepeat++;
                             }
@@ -689,12 +689,12 @@ namespace SchoolMetric
                     {
                         if (i % 2 == 0)
                         {
-                            dataGridView1[i + dataRow.Length - countRepeat + 1, j].Value = selectedBalls[countBallAdd].ToString();
+                            marksTable[i + dataRow.Length - countRepeat + 1, j].Value = selectedBalls[countBallAdd].ToString();
                             countBallAdd++;
                         }
                         else
                         {
-                            dataGridView1[i + dataRow.Length - countRepeat + 1, j].Value = selectedWeights[countWeightAdd].ToString();
+                            marksTable[i + dataRow.Length - countRepeat + 1, j].Value = selectedWeights[countWeightAdd].ToString();
                             countWeightAdd++;
                         }
                     }
@@ -753,14 +753,14 @@ namespace SchoolMetric
                     if (!cantReadThisFile)
                     {
 
-                        dataGridView1.Rows.Clear();
-                        dataGridView1.Columns.Clear();
+                        marksTable.Rows.Clear();
+                        marksTable.Columns.Clear();
 
                         columnSet(false, pred);
 
                         for (int i = 0; i < 2; i++)
                         {
-                            dataGridView1.Columns.RemoveAt(dataGridView1.Columns.Count - 1);
+                            marksTable.Columns.RemoveAt(marksTable.Columns.Count - 1);
                         }
 
                         int count = 0;
@@ -789,7 +789,7 @@ namespace SchoolMetric
 
                         columnGenBallWeight(count);
 
-                        dataGridView1.AllowUserToAddRows = false;
+                        marksTable.AllowUserToAddRows = false;
 
                         string[] inpstr;
                         char[] delim = new char[] { ';' };  //Разделители
@@ -797,7 +797,7 @@ namespace SchoolMetric
                         for (int i = 0; i < lines.Length; i++)
                         {
                             inpstr = lines[i].Split(delim);
-                            dataGridView1.Rows.Add(inpstr);
+                            marksTable.Rows.Add(inpstr);
                         }
 
                         resultBall();
@@ -823,17 +823,17 @@ namespace SchoolMetric
                 StreamWriter myWriter = new StreamWriter(Properties.Settings.Default.homeDirectory);
                 try
                 {
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    for (int i = 0; i < marksTable.Rows.Count; i++)
                     {
-                        for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                        for (int j = 0; j < marksTable.Columns.Count; j++)
                         {
-                            if (dataGridView1.Rows[i].Cells[j].Value == null)
+                            if (marksTable.Rows[i].Cells[j].Value == null)
                             {
                                 myWriter.Write("" + ";");
                             }
                             else
                             {
-                                myWriter.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + ";");
+                                myWriter.Write(marksTable.Rows[i].Cells[j].Value.ToString() + ";");
                             }
                         }
 
@@ -874,17 +874,17 @@ namespace SchoolMetric
                         StreamWriter myWriter = new StreamWriter(myStream);
                         try
                         {
-                            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                            for (int i = 0; i < marksTable.Rows.Count; i++)
                             {
-                                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                                for (int j = 0; j < marksTable.Columns.Count; j++)
                                 {
-                                    if (dataGridView1.Rows[i].Cells[j].Value == null)
+                                    if (marksTable.Rows[i].Cells[j].Value == null)
                                     {
                                         myWriter.Write("" + ";");
                                     }
                                     else
                                     {
-                                        myWriter.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + ";");
+                                        myWriter.Write(marksTable.Rows[i].Cells[j].Value.ToString() + ";");
                                     }
                                 }
 
@@ -908,7 +908,7 @@ namespace SchoolMetric
         {
             startEdit = true;
 
-            dataGridView1.Rows.Add();
+            marksTable.Rows.Add();
         }
 
         private void добавитьСтолбецToolStripMenuItem_Click(object sender, EventArgs e)
@@ -924,22 +924,22 @@ namespace SchoolMetric
         {
             startEdit = true;
 
-            dataGridView1.Rows.RemoveAt(dataGridView1.CurrentCell.RowIndex);
+            marksTable.Rows.RemoveAt(marksTable.CurrentCell.RowIndex);
         }
 
         private void удалитьСтолбецToolStripMenuItem_Click(object sender, EventArgs e)
         {
             startEdit = true;
 
-            if (dataGridView1.CurrentCell.ColumnIndex > 0 && dataGridView1.CurrentCell.ColumnIndex < dataGridView1.Columns.Count - 1 && dataGridView1.CurrentCell.ColumnIndex % 2 != 0)
+            if (marksTable.CurrentCell.ColumnIndex > 0 && marksTable.CurrentCell.ColumnIndex < marksTable.Columns.Count - 1 && marksTable.CurrentCell.ColumnIndex % 2 != 0)
             {
-                dataGridView1.Columns.RemoveAt(dataGridView1.CurrentCell.ColumnIndex);
-                dataGridView1.Columns.RemoveAt(dataGridView1.CurrentCell.ColumnIndex);
+                marksTable.Columns.RemoveAt(marksTable.CurrentCell.ColumnIndex);
+                marksTable.Columns.RemoveAt(marksTable.CurrentCell.ColumnIndex);
             }
-            else if (dataGridView1.CurrentCell.ColumnIndex > 0 && dataGridView1.CurrentCell.ColumnIndex < dataGridView1.Columns.Count - 1 && dataGridView1.CurrentCell.ColumnIndex % 2 == 0)
+            else if (marksTable.CurrentCell.ColumnIndex > 0 && marksTable.CurrentCell.ColumnIndex < marksTable.Columns.Count - 1 && marksTable.CurrentCell.ColumnIndex % 2 == 0)
             {
-                dataGridView1.Columns.RemoveAt(dataGridView1.CurrentCell.ColumnIndex);
-                dataGridView1.Columns.RemoveAt(dataGridView1.CurrentCell.ColumnIndex - 1);
+                marksTable.Columns.RemoveAt(marksTable.CurrentCell.ColumnIndex);
+                marksTable.Columns.RemoveAt(marksTable.CurrentCell.ColumnIndex - 1);
             }
 
             resultBall();
@@ -953,8 +953,8 @@ namespace SchoolMetric
 
             if (result == DialogResult.OK)
             {
-                dataGridView1.Rows.Clear();
-                dataGridView1.Columns.Clear();
+                marksTable.Rows.Clear();
+                marksTable.Columns.Clear();
 
                 columnSet(true, pred);
             }
@@ -964,30 +964,30 @@ namespace SchoolMetric
         {
             startEdit = true;
 
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < marksTable.Rows.Count; i++)
             {
-                for (int f = 1; f < dataGridView1.Columns.Count - 1; f++)
+                for (int f = 1; f < marksTable.Columns.Count - 1; f++)
                 {
                     if (f % 2 != 0)
                     {
-                        if (dataGridView1[f, i].Value != null && dataGridView1[f + 1, i].Value == null)
+                        if (marksTable[f, i].Value != null && marksTable[f + 1, i].Value == null)
                         {
-                            dataGridView1[f, i].Value = null;
+                            marksTable[f, i].Value = null;
                         }
-                        else if (dataGridView1[f, i].Value == null && dataGridView1[f + 1, i].Value != null)
+                        else if (marksTable[f, i].Value == null && marksTable[f + 1, i].Value != null)
                         {
-                            dataGridView1[f + 1, i].Value = null;
+                            marksTable[f + 1, i].Value = null;
                         }
                     }
                     else
                     {
-                        if (dataGridView1[f, i].Value != null && dataGridView1[f - 1, i].Value == null)
+                        if (marksTable[f, i].Value != null && marksTable[f - 1, i].Value == null)
                         {
-                            dataGridView1[f, i].Value = null;
+                            marksTable[f, i].Value = null;
                         }
-                        else if (dataGridView1[f, i].Value == null && dataGridView1[f - 1, i].Value != null)
+                        else if (marksTable[f, i].Value == null && marksTable[f - 1, i].Value != null)
                         {
-                            dataGridView1[f - 1, i].Value = null;
+                            marksTable[f - 1, i].Value = null;
                         }
                     }
                 }
@@ -1000,7 +1000,7 @@ namespace SchoolMetric
 
         private void настрокиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Setting frm1 = new Setting(dataGridView1, startEdit);
+            Setting frm1 = new Setting(marksTable, startEdit);
             frm1.ShowDialog();
 
             resultBall();
@@ -1010,9 +1010,9 @@ namespace SchoolMetric
         {
             startEdit = true;
 
-            if (dataGridView1.CurrentCell.ColumnIndex > 0 && dataGridView1.CurrentCell.ColumnIndex < dataGridView1.Columns.Count - 1)
+            if (marksTable.CurrentCell.ColumnIndex > 0 && marksTable.CurrentCell.ColumnIndex < marksTable.Columns.Count - 1)
             {
-                dataGridView1[dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex].Value = null;
+                marksTable[marksTable.CurrentCell.ColumnIndex, marksTable.CurrentCell.RowIndex].Value = null;
             }
 
             updateCell();
@@ -1066,14 +1066,14 @@ namespace SchoolMetric
                         if (!cantReadThisFile)
                         {
 
-                            dataGridView1.Rows.Clear();
-                        dataGridView1.Columns.Clear();
+                            marksTable.Rows.Clear();
+                        marksTable.Columns.Clear();
 
                         columnSet(false, pred);
 
                         for (int i = 0; i < 2; i++)
                         {
-                            dataGridView1.Columns.RemoveAt(dataGridView1.Columns.Count - 1);
+                            marksTable.Columns.RemoveAt(marksTable.Columns.Count - 1);
                         }
 
                         int count = 0;
@@ -1102,7 +1102,7 @@ namespace SchoolMetric
 
                         columnGenBallWeight(count);
 
-                        dataGridView1.AllowUserToAddRows = false;
+                        marksTable.AllowUserToAddRows = false;
 
                         string[] inpstr;
                         char[] delim = new char[] { ';' };  //Разделители
@@ -1110,7 +1110,7 @@ namespace SchoolMetric
                         for (int i = 0; i < lines.Length; i++)
                         {
                             inpstr = lines[i].Split(delim);
-                            dataGridView1.Rows.Add(inpstr);
+                            marksTable.Rows.Add(inpstr);
                         }
 
                         resultBall();
@@ -1167,13 +1167,13 @@ namespace SchoolMetric
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (dataGridView1.CurrentCell.ColumnIndex % 2 == 0 && dataGridView1.CurrentCell.ColumnIndex > 0 && Properties.Settings.Default.openWeight == true)
+            if (marksTable.CurrentCell.ColumnIndex % 2 == 0 && marksTable.CurrentCell.ColumnIndex > 0 && Properties.Settings.Default.openWeight == true)
             {
                 addWeight frm = new addWeight();
 
                 frm.ShowDialog();
 
-                dataGridView1[dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex].Value = frm.select.ToString();
+                marksTable[marksTable.CurrentCell.ColumnIndex, marksTable.CurrentCell.RowIndex].Value = frm.select.ToString();
             }
         }
 
@@ -1288,14 +1288,14 @@ namespace SchoolMetric
                         if (!cantReadThisFile)
                         {
 
-                            dataGridView1.Rows.Clear();
-                        dataGridView1.Columns.Clear();
+                            marksTable.Rows.Clear();
+                        marksTable.Columns.Clear();
 
                         columnSet(false, pred);
 
                         for (int i = 0; i < 2; i++)
                         {
-                            dataGridView1.Columns.RemoveAt(dataGridView1.Columns.Count - 1);
+                            marksTable.Columns.RemoveAt(marksTable.Columns.Count - 1);
                         }
 
                         int count = 0;
@@ -1324,7 +1324,7 @@ namespace SchoolMetric
 
                         columnGenBallWeight(count);
 
-                        dataGridView1.AllowUserToAddRows = false;
+                        marksTable.AllowUserToAddRows = false;
 
                         string[] inpstr;
                         char[] delim = new char[] { ';' };  //Разделители
@@ -1332,7 +1332,7 @@ namespace SchoolMetric
                         for (int i = 0; i < lines.Length; i++)
                         {
                             inpstr = lines[i].Split(delim);
-                            dataGridView1.Rows.Add(inpstr);
+                            marksTable.Rows.Add(inpstr);
                         }
 
                         resultBall();
@@ -1357,17 +1357,17 @@ namespace SchoolMetric
                 StreamWriter myWriter = new StreamWriter(Properties.Settings.Default.homeDirectory);
                 try
                 {
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    for (int i = 0; i < marksTable.Rows.Count; i++)
                     {
-                        for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                        for (int j = 0; j < marksTable.Columns.Count; j++)
                         {
-                            if (dataGridView1.Rows[i].Cells[j].Value == null)
+                            if (marksTable.Rows[i].Cells[j].Value == null)
                             {
                                 myWriter.Write("" + ";");
                             }
                             else
                             {
-                                myWriter.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + ";");
+                                myWriter.Write(marksTable.Rows[i].Cells[j].Value.ToString() + ";");
                             }
                         }
 
@@ -1386,51 +1386,54 @@ namespace SchoolMetric
             }
             else if (startEdit == true)
             {
+                DialogResult resultSave = MessageBox.Show("Файл с оценками не сохранён, сохранить?", "Сохранить файл?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                Stream myStream;
-
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-                saveFileDialog1.Filter = "dnv Файл (*.dnv)|*.dnv|txt Файл (*.txt)|*.txt";
-                saveFileDialog1.FilterIndex = 1;
-                saveFileDialog1.RestoreDirectory = true;
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                if (resultSave == DialogResult.Yes)
                 {
-                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    Stream myStream;
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                    saveFileDialog1.Filter = "dnv Файл (*.dnv)|*.dnv|txt Файл (*.txt)|*.txt";
+                    saveFileDialog1.FilterIndex = 1;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        Properties.Settings.Default.homeDirectory = saveFileDialog1.FileName;
-                        Properties.Settings.Default.Save();
-
-                        StreamWriter myWriter = new StreamWriter(myStream);
-                        try
+                        if ((myStream = saveFileDialog1.OpenFile()) != null)
                         {
-                            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                            Properties.Settings.Default.homeDirectory = saveFileDialog1.FileName;
+                            Properties.Settings.Default.Save();
+
+                            StreamWriter myWriter = new StreamWriter(myStream);
+                            try
                             {
-                                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                                for (int i = 0; i < marksTable.Rows.Count; i++)
                                 {
-                                    if (dataGridView1.Rows[i].Cells[j].Value == null)
+                                    for (int j = 0; j < marksTable.Columns.Count; j++)
                                     {
-                                        myWriter.Write("" + ";");
+                                        if (marksTable.Rows[i].Cells[j].Value == null)
+                                        {
+                                            myWriter.Write("" + ";");
+                                        }
+                                        else
+                                        {
+                                            myWriter.Write(marksTable.Rows[i].Cells[j].Value.ToString() + ";");
+                                        }
                                     }
-                                    else
-                                    {
-                                        myWriter.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + ";");
-                                    }
+
+                                    myWriter.WriteLine();
+
                                 }
-
-                                myWriter.WriteLine();
-
                             }
+                            catch { }
+                            finally
+                            {
+                                myWriter.Close();
+                            }
+                            myStream.Close();
                         }
-                        catch { }
-                        finally
-                        {
-                            myWriter.Close();
-                        }
-                        myStream.Close();
                     }
-
                 }
             }
         }
@@ -1521,13 +1524,13 @@ namespace SchoolMetric
 
         private void поднятьСтрокуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string[] data = new string[dataGridView1.Columns.Count - 1];
+            string[] data = new string[marksTable.Columns.Count - 1];
 
-            for (int i = 0; i < dataGridView1.Columns.Count - 1; i++)
+            for (int i = 0; i < marksTable.Columns.Count - 1; i++)
             {
                 try
                 {
-                    data[i] = dataGridView1[i, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+                    data[i] = marksTable[i, marksTable.CurrentCell.RowIndex].Value.ToString();
                 }
                 catch
                 {
@@ -1535,16 +1538,16 @@ namespace SchoolMetric
                 }
             }
 
-            if (dataGridView1.CurrentCell.RowIndex != 0)
+            if (marksTable.CurrentCell.RowIndex != 0)
             {
-                int index = dataGridView1.CurrentCell.RowIndex;
+                int index = marksTable.CurrentCell.RowIndex;
 
-                dataGridView1.Rows.RemoveAt(index);
+                marksTable.Rows.RemoveAt(index);
 
-                dataGridView1.Rows.Insert(index - 1, data);
+                marksTable.Rows.Insert(index - 1, data);
 
-                dataGridView1.Rows[index - 1].Selected = true;
-                dataGridView1.CurrentCell = dataGridView1[dataGridView1.CurrentCell.ColumnIndex, index - 1];
+                marksTable.Rows[index - 1].Selected = true;
+                marksTable.CurrentCell = marksTable[marksTable.CurrentCell.ColumnIndex, index - 1];
             }
 
             updateCell();
@@ -1554,13 +1557,13 @@ namespace SchoolMetric
 
         private void опуститьСтрокуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string[] data = new string[dataGridView1.Columns.Count - 1];
+            string[] data = new string[marksTable.Columns.Count - 1];
 
-            for (int i = 0; i < dataGridView1.Columns.Count - 1; i++)
+            for (int i = 0; i < marksTable.Columns.Count - 1; i++)
             {
                 try
                 {
-                    data[i] = dataGridView1[i, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+                    data[i] = marksTable[i, marksTable.CurrentCell.RowIndex].Value.ToString();
                 }
                 catch
                 {
@@ -1568,16 +1571,16 @@ namespace SchoolMetric
                 }
             }
 
-            if (dataGridView1.CurrentCell.RowIndex != dataGridView1.Rows.Count - 1)
+            if (marksTable.CurrentCell.RowIndex != marksTable.Rows.Count - 1)
             {
-                int index = dataGridView1.CurrentCell.RowIndex;
+                int index = marksTable.CurrentCell.RowIndex;
 
-                dataGridView1.Rows.RemoveAt(index);
+                marksTable.Rows.RemoveAt(index);
 
-                dataGridView1.Rows.Insert(index + 1, data);
+                marksTable.Rows.Insert(index + 1, data);
 
-                dataGridView1.Rows[index + 1].Selected = true;
-                dataGridView1.CurrentCell = dataGridView1[dataGridView1.CurrentCell.ColumnIndex, index + 1];
+                marksTable.Rows[index + 1].Selected = true;
+                marksTable.CurrentCell = marksTable[marksTable.CurrentCell.ColumnIndex, index + 1];
             }
 
             updateCell();
@@ -1798,11 +1801,11 @@ namespace SchoolMetric
             if (frm1.balls.TextLength != 0 && !frm1.closeButton)
             {
                 int countRepeat = 0;
-                for (int i = dataGridView1.Columns.Count - 2; i >= 0; i--)
+                for (int i = marksTable.Columns.Count - 2; i >= 0; i--)
                 {
                     try
                     {
-                        if (dataGridView1[i, dataGridView1.CurrentCell.RowIndex].Value == null)
+                        if (marksTable[i, marksTable.CurrentCell.RowIndex].Value == null)
                         {
                             countRepeat++;
                         }
@@ -1814,13 +1817,13 @@ namespace SchoolMetric
                     catch { }
                 }
 
-                int[] dataRow = new int[dataGridView1.Columns.Count - 2];
+                int[] dataRow = new int[marksTable.Columns.Count - 2];
 
-                for (int i = 0; i < dataGridView1.Columns.Count - 2; i++)
+                for (int i = 0; i < marksTable.Columns.Count - 2; i++)
                 {
                     try
                     {
-                        dataRow[i] = Convert.ToInt32(dataGridView1[i + 1, dataGridView1.CurrentCell.RowIndex].Value);
+                        dataRow[i] = Convert.ToInt32(marksTable[i + 1, marksTable.CurrentCell.RowIndex].Value);
                     }
                     catch
                     {
@@ -1840,12 +1843,12 @@ namespace SchoolMetric
                 {
                     if (i % 2 == 0)
                     {
-                        dataGridView1[i + abs + 1, dataGridView1.CurrentCell.RowIndex].Value = frm1.ballsStr[countBallAdd].ToString();
+                        marksTable[i + abs + 1, marksTable.CurrentCell.RowIndex].Value = frm1.ballsStr[countBallAdd].ToString();
                         countBallAdd++;
                     }
                     else if (frm1.weightStr.Length != 0)
                     {
-                        dataGridView1[i + abs + 1, dataGridView1.CurrentCell.RowIndex].Value = frm1.weightStr[countWeightAdd].ToString();
+                        marksTable[i + abs + 1, marksTable.CurrentCell.RowIndex].Value = frm1.weightStr[countWeightAdd].ToString();
                         countWeightAdd++;
                     }
                 }
@@ -1875,12 +1878,14 @@ namespace SchoolMetric
                 result = MessageBox.Show("Перед тем как вставить оценки из электронного журнала нужно сохранить текущие оценки.\n\nСохранить?", "Сохранить", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes && frm.insertMarks)
+            {
                 saveFileUpdate();
+            }
 
             if (frm.names.Count > 0 && frm.insertMarks)
             {
-                dataGridView1.Rows.Clear();
-                dataGridView1.Columns.Clear();
+                marksTable.Rows.Clear();
+                marksTable.Columns.Clear();
 
                 pred.Clear();
 
@@ -1913,12 +1918,12 @@ namespace SchoolMetric
                     {
                         if (j % 2 == 0)
                         {
-                            dataGridView1[j + 1, i].Value = frm.marks[i][countBallAdd].ToString();
+                            marksTable[j + 1, i].Value = frm.marks[i][countBallAdd].ToString();
                             countBallAdd++;
                         }
                         else
                         {
-                            dataGridView1[j + 1, i].Value = frm.weights[countWeightAdd].ToString();
+                            marksTable[j + 1, i].Value = frm.weights[countWeightAdd].ToString();
                             countWeightAdd++;
                         }
                     }

@@ -23,16 +23,16 @@ namespace SchoolMetric
 
             try
             {
-                checkBox1.Checked = Properties.Settings.Default.colorIndicateOn;
-                checkBox2.Checked = Properties.Settings.Default.homeDirectoryOpen;
-                checkBox3.Checked = Properties.Settings.Default.openWeight;
-                numericUpDown1.Value = Convert.ToDecimal(Properties.Settings.Default.twoStep);
-                numericUpDown2.Value = Convert.ToDecimal(Properties.Settings.Default.threeStep);
-                numericUpDown3.Value = Convert.ToDecimal(Properties.Settings.Default.fourStep);
-                panel1.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
-                panel2.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
-                panel3.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
-                panel4.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
+                colorIndication.Checked = Properties.Settings.Default.colorIndicateOn;
+                openFileNewProgram.Checked = Properties.Settings.Default.homeDirectoryOpen;
+                openFormWeights.Checked = Properties.Settings.Default.openWeight;
+                twoStep.Value = Convert.ToDecimal(Properties.Settings.Default.twoStep);
+                threeStep.Value = Convert.ToDecimal(Properties.Settings.Default.threeStep);
+                fourStep.Value = Convert.ToDecimal(Properties.Settings.Default.fourStep);
+                twoStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
+                threeStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
+                fourStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
+                fiveStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
 
                 checkBox4.Checked = Properties.Settings.Default.oneWeight;
                 checkBox6.Checked = Properties.Settings.Default.twoWeight;
@@ -63,20 +63,18 @@ namespace SchoolMetric
                 Properties.Settings.Default.Reset();
             }
 
-            panel1.Enabled = checkBox1.Checked;
-            panel2.Enabled = checkBox1.Checked;
-            panel3.Enabled = checkBox1.Checked;
-            panel4.Enabled = checkBox1.Checked;
-            pictureBox1.Enabled = checkBox1.Checked;
-            pictureBox2.Enabled = checkBox1.Checked;
-            pictureBox3.Enabled = checkBox1.Checked;
-            pictureBox4.Enabled = checkBox1.Checked;
+            twoStepColor.Enabled = colorIndication.Checked;
+            threeStepColor.Enabled = colorIndication.Checked;
+            fourStepColor.Enabled = colorIndication.Checked;
+            fiveStepColor.Enabled = colorIndication.Checked;
+            pictureBox1.Enabled = colorIndication.Checked;
+            pictureBox2.Enabled = colorIndication.Checked;
+            pictureBox3.Enabled = colorIndication.Checked;
+            pictureBox4.Enabled = colorIndication.Checked;
         }
 
         private void saveWeights()
         {
-            string weights = "";
-
             Properties.Settings.Default.oneWeight = checkBox4.Checked;
             Properties.Settings.Default.twoWeight = checkBox6.Checked;
             Properties.Settings.Default.threeWeight = checkBox5.Checked;
@@ -145,19 +143,19 @@ namespace SchoolMetric
 
                     if (numColor == 0)
                     {
-                        panel1.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
+                        twoStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (numColor == 1)
                     {
-                        panel2.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
+                        threeStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (numColor == 2)
                     {
-                        panel3.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
+                        fourStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
                     }
                     else if (numColor == 3)
                     {
-                        panel4.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
+                        fiveStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
                     }
                 }
             }
@@ -167,15 +165,15 @@ namespace SchoolMetric
         {
             if (numStep == 0)
             {
-                Properties.Settings.Default.twoStep = Convert.ToSingle(numericUpDown1.Value);
+                Properties.Settings.Default.twoStep = Convert.ToSingle(twoStep.Value);
             }
             else if (numStep == 1)
             {
-                Properties.Settings.Default.threeStep = Convert.ToSingle(numericUpDown2.Value);
+                Properties.Settings.Default.threeStep = Convert.ToSingle(threeStep.Value);
             }
             else if (numStep == 2)
             {
-                Properties.Settings.Default.fourStep = Convert.ToSingle(numericUpDown3.Value);
+                Properties.Settings.Default.fourStep = Convert.ToSingle(fourStep.Value);
             }
 
             Properties.Settings.Default.Save();
@@ -185,16 +183,16 @@ namespace SchoolMetric
         {
             Properties.Settings.Default.Reset();
 
-            checkBox1.Checked = Properties.Settings.Default.colorIndicateOn;
-            checkBox2.Checked = Properties.Settings.Default.homeDirectoryOpen;
-            checkBox3.Checked = Properties.Settings.Default.openWeight;
-            numericUpDown1.Value = Convert.ToDecimal(Properties.Settings.Default.twoStep);
-            numericUpDown2.Value = Convert.ToDecimal(Properties.Settings.Default.threeStep);
-            numericUpDown3.Value = Convert.ToDecimal(Properties.Settings.Default.fourStep);
-            panel1.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
-            panel2.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
-            panel3.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
-            panel4.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
+            colorIndication.Checked = Properties.Settings.Default.colorIndicateOn;
+            openFileNewProgram.Checked = Properties.Settings.Default.homeDirectoryOpen;
+            openFormWeights.Checked = Properties.Settings.Default.openWeight;
+            twoStep.Value = Convert.ToDecimal(Properties.Settings.Default.twoStep);
+            threeStep.Value = Convert.ToDecimal(Properties.Settings.Default.threeStep);
+            fourStep.Value = Convert.ToDecimal(Properties.Settings.Default.fourStep);
+            twoStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.twoColor, System.Globalization.NumberStyles.HexNumber));
+            threeStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.threeColor, System.Globalization.NumberStyles.HexNumber));
+            fourStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fourColor, System.Globalization.NumberStyles.HexNumber));
+            fiveStepColor.BackColor = Color.FromArgb(int.Parse(Properties.Settings.Default.fiveColor, System.Globalization.NumberStyles.HexNumber));
 
             reload = true;
 
@@ -223,17 +221,17 @@ namespace SchoolMetric
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.colorIndicateOn = checkBox1.Checked;
+            Properties.Settings.Default.colorIndicateOn = colorIndication.Checked;
             Properties.Settings.Default.Save();
 
-            panel1.Enabled = checkBox1.Checked;
-            panel2.Enabled = checkBox1.Checked;
-            panel3.Enabled = checkBox1.Checked;
-            panel4.Enabled = checkBox1.Checked;
-            pictureBox1.Enabled = checkBox1.Checked;
-            pictureBox2.Enabled = checkBox1.Checked;
-            pictureBox3.Enabled = checkBox1.Checked;
-            pictureBox4.Enabled = checkBox1.Checked;
+            twoStepColor.Enabled = colorIndication.Checked;
+            threeStepColor.Enabled = colorIndication.Checked;
+            fourStepColor.Enabled = colorIndication.Checked;
+            fiveStepColor.Enabled = colorIndication.Checked;
+            pictureBox1.Enabled = colorIndication.Checked;
+            pictureBox2.Enabled = colorIndication.Checked;
+            pictureBox3.Enabled = colorIndication.Checked;
+            pictureBox4.Enabled = colorIndication.Checked;
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -253,7 +251,7 @@ namespace SchoolMetric
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.homeDirectoryOpen = checkBox2.Checked;
+            Properties.Settings.Default.homeDirectoryOpen = openFileNewProgram.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -399,83 +397,88 @@ namespace SchoolMetric
 
                 if (msg == DialogResult.Yes && startEdit == true)
                 {
+                    DialogResult resultSave = MessageBox.Show("Файл с оценками не сохранён, сохранить?", "Сохранить файл?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (File.Exists(Properties.Settings.Default.homeDirectory))
-                    {
-                        StreamWriter myWriter = new StreamWriter(Properties.Settings.Default.homeDirectory);
-                        try
-                        {
-                            for (int i = 0; i < dataGrid.Rows.Count; i++)
-                            {
-                                for (int j = 0; j < dataGrid.Columns.Count; j++)
-                                {
-                                    if (dataGrid.Rows[i].Cells[j].Value == null)
-                                    {
-                                        myWriter.Write("" + ";");
-                                    }
-                                    else
-                                    {
-                                        myWriter.Write(dataGrid.Rows[i].Cells[j].Value.ToString() + ";");
-                                    }
-                                }
-
-                                myWriter.WriteLine();
-
-                            }
-                        }
-                        catch { }
-                        finally
-                        {
-                            myWriter.Close();
-                        }
-                        MessageBox.Show("Файл сохранён!", "Оповещение", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Application.Restart();
-                    }
-                    else if (startEdit == true)
+                    if (resultSave == DialogResult.Yes)
                     {
 
-                        Stream myStream;
-
-                        SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-
-                        saveFileDialog1.Filter = "dnv Файл (*.dnv)|*.dnv|txt Файл (*.txt)|*.txt";
-                        saveFileDialog1.FilterIndex = 1;
-                        saveFileDialog1.RestoreDirectory = true;
-
-                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        if (File.Exists(Properties.Settings.Default.homeDirectory))
                         {
-                            if ((myStream = saveFileDialog1.OpenFile()) != null)
+                            StreamWriter myWriter = new StreamWriter(Properties.Settings.Default.homeDirectory);
+                            try
                             {
-                                Properties.Settings.Default.homeDirectory = saveFileDialog1.FileName;
-                                Properties.Settings.Default.Save();
-
-                                StreamWriter myWriter = new StreamWriter(myStream);
-                                try
+                                for (int i = 0; i < dataGrid.Rows.Count; i++)
                                 {
-                                    for (int i = 0; i < dataGrid.Rows.Count; i++)
+                                    for (int j = 0; j < dataGrid.Columns.Count; j++)
                                     {
-                                        for (int j = 0; j < dataGrid.Columns.Count; j++)
+                                        if (dataGrid.Rows[i].Cells[j].Value == null)
                                         {
-                                            if (dataGrid.Rows[i].Cells[j].Value == null)
-                                            {
-                                                myWriter.Write("" + ";");
-                                            }
-                                            else
-                                            {
-                                                myWriter.Write(dataGrid.Rows[i].Cells[j].Value.ToString() + ";");
-                                            }
+                                            myWriter.Write("" + ";");
                                         }
-
-                                        myWriter.WriteLine();
-
+                                        else
+                                        {
+                                            myWriter.Write(dataGrid.Rows[i].Cells[j].Value.ToString() + ";");
+                                        }
                                     }
+
+                                    myWriter.WriteLine();
+
                                 }
-                                catch { }
-                                finally
+                            }
+                            catch { }
+                            finally
+                            {
+                                myWriter.Close();
+                            }
+                            MessageBox.Show("Файл сохранён!", "Оповещение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Application.Restart();
+                        }
+                        else if (startEdit == true)
+                        {
+
+                            Stream myStream;
+
+                            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                            saveFileDialog1.Filter = "dnv Файл (*.dnv)|*.dnv|txt Файл (*.txt)|*.txt";
+                            saveFileDialog1.FilterIndex = 1;
+                            saveFileDialog1.RestoreDirectory = true;
+
+                            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                if ((myStream = saveFileDialog1.OpenFile()) != null)
                                 {
-                                    myWriter.Close();
+                                    Properties.Settings.Default.homeDirectory = saveFileDialog1.FileName;
+                                    Properties.Settings.Default.Save();
+
+                                    StreamWriter myWriter = new StreamWriter(myStream);
+                                    try
+                                    {
+                                        for (int i = 0; i < dataGrid.Rows.Count; i++)
+                                        {
+                                            for (int j = 0; j < dataGrid.Columns.Count; j++)
+                                            {
+                                                if (dataGrid.Rows[i].Cells[j].Value == null)
+                                                {
+                                                    myWriter.Write("" + ";");
+                                                }
+                                                else
+                                                {
+                                                    myWriter.Write(dataGrid.Rows[i].Cells[j].Value.ToString() + ";");
+                                                }
+                                            }
+
+                                            myWriter.WriteLine();
+
+                                        }
+                                    }
+                                    catch { }
+                                    finally
+                                    {
+                                        myWriter.Close();
+                                    }
+                                    myStream.Close();
                                 }
-                                myStream.Close();
                             }
                         }
                     }
@@ -528,7 +531,7 @@ namespace SchoolMetric
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.openWeight = checkBox3.Checked;
+            Properties.Settings.Default.openWeight = openFormWeights.Checked;
             Properties.Settings.Default.Save();
         }
 

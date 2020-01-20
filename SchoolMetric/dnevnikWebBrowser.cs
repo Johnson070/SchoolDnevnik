@@ -13,66 +13,17 @@ namespace SchoolMetric
         {
             InitializeComponent();
 
-            webBrowser1.ScriptErrorsSuppressed = true;
+            DotNetBrowser.Helper.irDeveloper.ModifyInMemory.ActivateMemoryPatching();
 
-            webBrowser1.Navigate("https://login.dnevnik.ru/login/");
+            dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
 
-            SetWebBrowserCompatiblityLevel();
-        }
-
-        private static void SetWebBrowserCompatiblityLevel()
-        {
-            string appName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            int lvl = 1000 * GetBrowserVersion();
-            bool fixVShost = File.Exists(Path.ChangeExtension(Application.ExecutablePath, ".vshost.exe"));
-
-            WriteCompatiblityLevel("HKEY_LOCAL_MACHINE", appName + ".exe", lvl);
-            if (fixVShost) WriteCompatiblityLevel("HKEY_LOCAL_MACHINE", appName + ".vshost.exe", lvl);
-
-            WriteCompatiblityLevel("HKEY_CURRENT_USER", appName + ".exe", lvl);
-            if (fixVShost) WriteCompatiblityLevel("HKEY_CURRENT_USER", appName + ".vshost.exe", lvl);
-        }
-
-        private static void WriteCompatiblityLevel(string root, string appName, int lvl)
-        {
-            try
-            {
-                Microsoft.Win32.Registry.SetValue(root + @"\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION", appName, lvl);
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public static int GetBrowserVersion()
-        {
-            string strKeyPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer";
-            string[] ls = new string[] { "svcVersion", "svcUpdateVersion", "Version", "W2kVersion" };
-
-            int maxVer = 0;
-            for (int i = 0; i < ls.Length; ++i)
-            {
-                object objVal = Microsoft.Win32.Registry.GetValue(strKeyPath, ls[i], "0");
-                string strVal = Convert.ToString(objVal);
-                if (strVal != null)
-                {
-                    int iPos = strVal.IndexOf('.');
-                    if (iPos > 0)
-                        strVal = strVal.Substring(0, iPos);
-
-                    int res = 0;
-                    if (int.TryParse(strVal, out res))
-                        maxVer = Math.Max(maxVer, res);
-                }
-            }
-
-            return maxVer;
+            dnevnikWeb.Browser.ZoomEnabled = true;
         }
 
         public List<string> marks = new List<string>();
         public List<string> weights = new List<string>();
         public List<string> names = new List<string>();
-        public bool insertMarks = true;
+        public bool insertMarks = false;
 
         private void copyMarks_Click(object sender, EventArgs e)
         {
@@ -80,12 +31,12 @@ namespace SchoolMetric
             weights.Clear();
             names.Clear();
 
-            string html = webBrowser1.DocumentText;
+            string html = dnevnikWeb.Browser.GetHTML();
 
             var parser = new HtmlParser();
             var document = parser.ParseDocument(html);
 
-            if (webBrowser1.Url.ToString().Contains("tab=period"))
+            if (dnevnikWeb.URL.ToString().Contains("tab=period"))
             {
                 string marksText;
 
@@ -157,33 +108,36 @@ namespace SchoolMetric
 
         private void openSite_Click(object sender, EventArgs e)
         {
-            webBrowser1.Navigate("https://login.dnevnik.ru/login/");
-            this.Text = webBrowser1.Url.ToString();
+            //webBrowser1.Navigate("https://login.dnevnik.ru/login/");
+            dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
+            this.Text = dnevnikWeb.URL.ToString();
         }
 
         private void backPage_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoBack();
+            dnevnikWeb.Browser.GoBack();
         }
 
         private void upPage_Click(object sender, EventArgs e)
         {
-            webBrowser1.GoForward();
+            dnevnikWeb.Browser.GoForward();
         }
 
         private void updatePage_Click(object sender, EventArgs e)
         {
-            webBrowser1.Refresh();
+            dnevnikWeb.Browser.Reload();
         }
 
-        private void clearCookies_Click(object sender, EventArgs e)
+        private void scaleValueChanged(object sender, EventArgs e)
         {
+            float scaleZoom = Convert.ToInt32(scaleItemsValue.Text.Replace("%", ""));
 
-        }
+            if (scaleZoom < 100)
+            {
+                scaleZoom = (scaleZoom - 100);
+            }
 
-        private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        {
-            this.Text = webBrowser1.Url.ToString();
+            dnevnikWeb.Browser.ZoomLevel = scaleZoom / 100;
         }
     }
 }

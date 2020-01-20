@@ -37,9 +37,9 @@ namespace SchoolMetric
             addDataMenuIndividual(Properties.Settings.Default.nineWeight, 9, Properties.Settings.Default.nineText);
             addDataMenuIndividual(Properties.Settings.Default.tenWeight, 10, Properties.Settings.Default.tenText);
 
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                dataGridView2.Rows[i].Cells[2].Value = (dataGridView2.Columns[2] as DataGridViewComboBoxColumn).Items[0];
+                countWeights.Rows[i].Cells[2].Value = (countWeights.Columns[2] as DataGridViewComboBoxColumn).Items[0];
             }
 
 
@@ -53,9 +53,9 @@ namespace SchoolMetric
         {
             if (state)
             {
-                dataGridView2.Rows.Add();
-                dataGridView2.Rows[pos].Cells[0].Value = _pos;
-                dataGridView2.Rows[pos].Cells[1].Value = text;
+                countWeights.Rows.Add();
+                countWeights.Rows[pos].Cells[0].Value = _pos;
+                countWeights.Rows[pos].Cells[1].Value = text;
 
                 pos++;
             }
@@ -65,11 +65,11 @@ namespace SchoolMetric
         {
             if (state)
             {
-                dataGridView1.Rows.Add();
-                dataGridView1.Rows[pos].Cells[0].Value = _pos;
-                dataGridView1.Rows[pos].Cells[1].Value = text;
-                dataGridView1.Rows[pos].Cells[2].Value = (dataGridView1.Columns[2] as DataGridViewComboBoxColumn).Items[0];
-                dataGridView1.Rows[pos].Cells[3].Value = (dataGridView1.Columns[3] as DataGridViewComboBoxColumn).Items[3];
+                individualWeigthsСomplexity.Rows.Add();
+                individualWeigthsСomplexity.Rows[pos].Cells[0].Value = _pos;
+                individualWeigthsСomplexity.Rows[pos].Cells[1].Value = text;
+                individualWeigthsСomplexity.Rows[pos].Cells[2].Value = (individualWeigthsСomplexity.Columns[2] as DataGridViewComboBoxColumn).Items[0];
+                individualWeigthsСomplexity.Rows[pos].Cells[3].Value = (individualWeigthsСomplexity.Columns[3] as DataGridViewComboBoxColumn).Items[3];
                 //dataGridView1.Rows[pos].Cells[4].Value = (dataGridView1.Columns[4] as DataGridViewComboBoxColumn).Items[2];
 
                 pos++;
@@ -82,9 +82,9 @@ namespace SchoolMetric
         {
             //updateNum();
 
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                colBalls += Convert.ToInt16(dataGridView2.Rows[i].Cells[2].Value);
+                colBalls += Convert.ToInt16(countWeights.Rows[i].Cells[2].Value);
             }
 
             //colBalls = Convert.ToInt16(type1.Value + type2.Value + type3.Value + type4.Value + type5.Value + type6.Value + type7.Value + type8.Value + type9.Value + type10.Value);
@@ -92,31 +92,31 @@ namespace SchoolMetric
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                if (Convert.ToInt16(dataGridView2.Rows[i].Cells[2].Value) != 0)
+                if (Convert.ToInt16(countWeights.Rows[i].Cells[2].Value) != 0)
                 {
-                    type[Convert.ToInt16(dataGridView2.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(dataGridView2.Rows[i].Cells[2].Value);
+                    type[Convert.ToInt16(countWeights.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(countWeights.Rows[i].Cells[2].Value);
                 }
                 else
                 {
-                    type[Convert.ToInt16(dataGridView2.Rows[i].Cells[0].Value) - 1] = 0;
+                    type[Convert.ToInt16(countWeights.Rows[i].Cells[0].Value) - 1] = 0;
                 }
             }
 
             colBalls = 0;
 
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                colBalls += Convert.ToInt16(dataGridView2.Rows[i].Cells[2].Value);
+                colBalls += Convert.ToInt16(countWeights.Rows[i].Cells[2].Value);
             }
 
             closeButton = false;
 
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                typeIndividual[0, Convert.ToInt16(dataGridView1.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(dataGridView1.Rows[i].Cells[2].Value);
-                typeIndividual[1, Convert.ToInt16(dataGridView1.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(dataGridView1.Rows[i].Cells[3].Value);
+                typeIndividual[0, Convert.ToInt16(individualWeigthsСomplexity.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(individualWeigthsСomplexity.Rows[i].Cells[2].Value);
+                typeIndividual[1, Convert.ToInt16(individualWeigthsСomplexity.Rows[i].Cells[0].Value) - 1] = Convert.ToInt16(individualWeigthsСomplexity.Rows[i].Cells[3].Value);
             }
 
             this.Close();
@@ -124,9 +124,9 @@ namespace SchoolMetric
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                dataGridView2.Rows[i].Cells[2].Value = 0;
+                countWeights.Rows[i].Cells[2].Value = 0;
             }
 
             colBalls = 0;
@@ -136,9 +136,9 @@ namespace SchoolMetric
         {
             colBalls = 0;
 
-            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            for (int i = 0; i < countWeights.Rows.Count; i++)
             {
-                colBalls += Convert.ToInt16(dataGridView2.Rows[i].Cells[2].Value);
+                colBalls += Convert.ToInt16(countWeights.Rows[i].Cells[2].Value);
             }
 
             

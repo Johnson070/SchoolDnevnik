@@ -35,23 +35,23 @@
             this.выбратьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ballRange = new System.Windows.Forms.ToolStripDropDownButton();
-            this.отToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minValue = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
-            this.доToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maxValue = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.filterMarks = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.filterBallChecked = new System.Windows.Forms.ToolStripMenuItem();
+            this.twoMark = new System.Windows.Forms.ToolStripMenuItem();
+            this.threeMark = new System.Windows.Forms.ToolStripMenuItem();
+            this.fourMark = new System.Windows.Forms.ToolStripMenuItem();
+            this.fiveMark = new System.Windows.Forms.ToolStripMenuItem();
             this.sorts = new System.Windows.Forms.ToolStripDropDownButton();
-            this.поВозростаниюToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.поУбываниюToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.поРазницеБалловToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upValues = new System.Windows.Forms.ToolStripMenuItem();
+            this.downValues = new System.Windows.Forms.ToolStripMenuItem();
+            this.absValues = new System.Windows.Forms.ToolStripMenuItem();
             this.positive = new System.Windows.Forms.ToolStripMenuItem();
             this.neutral = new System.Windows.Forms.ToolStripMenuItem();
             this.negative = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.resetFilter = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mainProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -92,7 +92,7 @@
             this.ballRange,
             this.filterMarks,
             this.sorts,
-            this.toolStripButton1});
+            this.resetFilter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(737, 25);
@@ -103,22 +103,22 @@
             // 
             this.ballRange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.ballRange.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.отToolStripMenuItem,
-            this.доToolStripMenuItem});
+            this.minValue,
+            this.maxValue});
             this.ballRange.Image = ((System.Drawing.Image)(resources.GetObject("ballRange.Image")));
             this.ballRange.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ballRange.Name = "ballRange";
             this.ballRange.Size = new System.Drawing.Size(162, 22);
             this.ballRange.Text = "Диапазон среднего балла";
             // 
-            // отToolStripMenuItem
+            // minValue
             // 
-            this.отToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.minValue.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox2});
-            this.отToolStripMenuItem.MergeIndex = 8;
-            this.отToolStripMenuItem.Name = "отToolStripMenuItem";
-            this.отToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.отToolStripMenuItem.Text = "От";
+            this.minValue.MergeIndex = 8;
+            this.minValue.Name = "minValue";
+            this.minValue.Size = new System.Drawing.Size(180, 22);
+            this.minValue.Text = "От";
             // 
             // toolStripComboBox2
             // 
@@ -194,13 +194,13 @@
             this.toolStripComboBox2.Text = "2,0";
             this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.updateFilterTable);
             // 
-            // доToolStripMenuItem
+            // maxValue
             // 
-            this.доToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maxValue.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox1});
-            this.доToolStripMenuItem.Name = "доToolStripMenuItem";
-            this.доToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.доToolStripMenuItem.Text = "До";
+            this.maxValue.Name = "maxValue";
+            this.maxValue.Size = new System.Drawing.Size(180, 22);
+            this.maxValue.Text = "До";
             // 
             // toolStripComboBox1
             // 
@@ -248,94 +248,94 @@
             // 
             this.filterMarks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.filterMarks.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4,
-            this.filterBallChecked});
+            this.twoMark,
+            this.threeMark,
+            this.fourMark,
+            this.fiveMark});
             this.filterMarks.Image = ((System.Drawing.Image)(resources.GetObject("filterMarks.Image")));
             this.filterMarks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.filterMarks.Name = "filterMarks";
             this.filterMarks.Size = new System.Drawing.Size(104, 22);
             this.filterMarks.Text = "Фильтр оценок";
             // 
-            // toolStripMenuItem2
+            // twoMark
             // 
-            this.toolStripMenuItem2.Checked = true;
-            this.toolStripMenuItem2.CheckOnClick = true;
-            this.toolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem2.Text = "2";
-            this.toolStripMenuItem2.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
+            this.twoMark.Checked = true;
+            this.twoMark.CheckOnClick = true;
+            this.twoMark.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.twoMark.Name = "twoMark";
+            this.twoMark.Size = new System.Drawing.Size(180, 22);
+            this.twoMark.Text = "2";
+            this.twoMark.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
             // 
-            // toolStripMenuItem3
+            // threeMark
             // 
-            this.toolStripMenuItem3.Checked = true;
-            this.toolStripMenuItem3.CheckOnClick = true;
-            this.toolStripMenuItem3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem3.Text = "3";
-            this.toolStripMenuItem3.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
+            this.threeMark.Checked = true;
+            this.threeMark.CheckOnClick = true;
+            this.threeMark.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.threeMark.Name = "threeMark";
+            this.threeMark.Size = new System.Drawing.Size(180, 22);
+            this.threeMark.Text = "3";
+            this.threeMark.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
             // 
-            // toolStripMenuItem4
+            // fourMark
             // 
-            this.toolStripMenuItem4.Checked = true;
-            this.toolStripMenuItem4.CheckOnClick = true;
-            this.toolStripMenuItem4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem4.Text = "4";
-            this.toolStripMenuItem4.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
+            this.fourMark.Checked = true;
+            this.fourMark.CheckOnClick = true;
+            this.fourMark.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fourMark.Name = "fourMark";
+            this.fourMark.Size = new System.Drawing.Size(180, 22);
+            this.fourMark.Text = "4";
+            this.fourMark.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
             // 
-            // filterBallChecked
+            // fiveMark
             // 
-            this.filterBallChecked.Checked = true;
-            this.filterBallChecked.CheckOnClick = true;
-            this.filterBallChecked.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.filterBallChecked.Name = "filterBallChecked";
-            this.filterBallChecked.Size = new System.Drawing.Size(80, 22);
-            this.filterBallChecked.Text = "5";
-            this.filterBallChecked.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
+            this.fiveMark.Checked = true;
+            this.fiveMark.CheckOnClick = true;
+            this.fiveMark.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.fiveMark.Name = "fiveMark";
+            this.fiveMark.Size = new System.Drawing.Size(180, 22);
+            this.fiveMark.Text = "5";
+            this.fiveMark.CheckStateChanged += new System.EventHandler(this.updateFilterTable);
             // 
             // sorts
             // 
             this.sorts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.sorts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.поВозростаниюToolStripMenuItem1,
-            this.поУбываниюToolStripMenuItem1,
-            this.поРазницеБалловToolStripMenuItem});
+            this.upValues,
+            this.downValues,
+            this.absValues});
             this.sorts.Image = ((System.Drawing.Image)(resources.GetObject("sorts.Image")));
             this.sorts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sorts.Name = "sorts";
             this.sorts.Size = new System.Drawing.Size(86, 22);
             this.sorts.Text = "Сортировка";
             // 
-            // поВозростаниюToolStripMenuItem1
+            // upValues
             // 
-            this.поВозростаниюToolStripMenuItem1.CheckOnClick = true;
-            this.поВозростаниюToolStripMenuItem1.Name = "поВозростаниюToolStripMenuItem1";
-            this.поВозростаниюToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
-            this.поВозростаниюToolStripMenuItem1.Text = "По возрастанию";
-            this.поВозростаниюToolStripMenuItem1.Click += new System.EventHandler(this.поВозростаниюToolStripMenuItem1_Click);
+            this.upValues.CheckOnClick = true;
+            this.upValues.Name = "upValues";
+            this.upValues.Size = new System.Drawing.Size(181, 22);
+            this.upValues.Text = "По возрастанию";
+            this.upValues.Click += new System.EventHandler(this.поВозростаниюToolStripMenuItem1_Click);
             // 
-            // поУбываниюToolStripMenuItem1
+            // downValues
             // 
-            this.поУбываниюToolStripMenuItem1.CheckOnClick = true;
-            this.поУбываниюToolStripMenuItem1.Name = "поУбываниюToolStripMenuItem1";
-            this.поУбываниюToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
-            this.поУбываниюToolStripMenuItem1.Text = "По убыванию";
-            this.поУбываниюToolStripMenuItem1.Click += new System.EventHandler(this.поУбываниюToolStripMenuItem1_Click);
+            this.downValues.CheckOnClick = true;
+            this.downValues.Name = "downValues";
+            this.downValues.Size = new System.Drawing.Size(181, 22);
+            this.downValues.Text = "По убыванию";
+            this.downValues.Click += new System.EventHandler(this.поУбываниюToolStripMenuItem1_Click);
             // 
-            // поРазницеБалловToolStripMenuItem
+            // absValues
             // 
-            this.поРазницеБалловToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.absValues.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.positive,
             this.neutral,
             this.negative});
-            this.поРазницеБалловToolStripMenuItem.Name = "поРазницеБалловToolStripMenuItem";
-            this.поРазницеБалловToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.поРазницеБалловToolStripMenuItem.Text = "По разнице баллов";
+            this.absValues.Name = "absValues";
+            this.absValues.Size = new System.Drawing.Size(181, 22);
+            this.absValues.Text = "По разнице баллов";
             // 
             // positive
             // 
@@ -343,7 +343,7 @@
             this.positive.CheckOnClick = true;
             this.positive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.positive.Name = "positive";
-            this.positive.Size = new System.Drawing.Size(163, 22);
+            this.positive.Size = new System.Drawing.Size(180, 22);
             this.positive.Text = "Положительная";
             this.positive.Click += new System.EventHandler(this.updateFilterTable);
             // 
@@ -353,7 +353,7 @@
             this.neutral.CheckOnClick = true;
             this.neutral.CheckState = System.Windows.Forms.CheckState.Checked;
             this.neutral.Name = "neutral";
-            this.neutral.Size = new System.Drawing.Size(163, 22);
+            this.neutral.Size = new System.Drawing.Size(180, 22);
             this.neutral.Text = "Нейтральная";
             this.neutral.Click += new System.EventHandler(this.updateFilterTable);
             // 
@@ -363,20 +363,20 @@
             this.negative.CheckOnClick = true;
             this.negative.CheckState = System.Windows.Forms.CheckState.Checked;
             this.negative.Name = "negative";
-            this.negative.Size = new System.Drawing.Size(163, 22);
+            this.negative.Size = new System.Drawing.Size(180, 22);
             this.negative.Text = "Отрицательная";
             this.negative.Click += new System.EventHandler(this.updateFilterTable);
             // 
-            // toolStripButton1
+            // resetFilter
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(46, 22);
-            this.toolStripButton1.Text = "Сброс";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.resetFilter.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.resetFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.resetFilter.Image = ((System.Drawing.Image)(resources.GetObject("resetFilter.Image")));
+            this.resetFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.resetFilter.Name = "resetFilter";
+            this.resetFilter.Size = new System.Drawing.Size(46, 22);
+            this.resetFilter.Text = "Сброс";
+            this.resetFilter.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // statusStrip1
             // 
@@ -424,20 +424,20 @@
         private System.Windows.Forms.ToolStripMenuItem выбратьToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton ballRange;
-        private System.Windows.Forms.ToolStripMenuItem отToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem доToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minValue;
+        private System.Windows.Forms.ToolStripMenuItem maxValue;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
         private System.Windows.Forms.ToolStripDropDownButton filterMarks;
         private System.Windows.Forms.ToolStripDropDownButton sorts;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem filterBallChecked;
-        private System.Windows.Forms.ToolStripMenuItem поВозростаниюToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem поУбываниюToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem поРазницеБалловToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton resetFilter;
+        private System.Windows.Forms.ToolStripMenuItem twoMark;
+        private System.Windows.Forms.ToolStripMenuItem threeMark;
+        private System.Windows.Forms.ToolStripMenuItem fourMark;
+        private System.Windows.Forms.ToolStripMenuItem fiveMark;
+        private System.Windows.Forms.ToolStripMenuItem upValues;
+        private System.Windows.Forms.ToolStripMenuItem downValues;
+        private System.Windows.Forms.ToolStripMenuItem absValues;
         private System.Windows.Forms.ToolStripMenuItem positive;
         private System.Windows.Forms.ToolStripMenuItem neutral;
         private System.Windows.Forms.ToolStripMenuItem negative;

@@ -36,7 +36,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.openSite = new System.Windows.Forms.ToolStripButton();
             this.copyMarks = new System.Windows.Forms.ToolStripButton();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.scaleValue = new System.Windows.Forms.ToolStripDropDownButton();
+            this.scaleItemsValue = new System.Windows.Forms.ToolStripComboBox();
+            this.dnevnikWeb = new DotNetBrowser.WinForms.WinFormsBrowserView();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,10 +51,12 @@
             this.updatePage,
             this.toolStripSeparator1,
             this.openSite,
-            this.copyMarks});
+            this.copyMarks,
+            this.toolStripSeparator2,
+            this.scaleValue});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1077, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1095, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -106,34 +111,72 @@
             this.copyMarks.Image = ((System.Drawing.Image)(resources.GetObject("copyMarks.Image")));
             this.copyMarks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyMarks.Name = "copyMarks";
-            this.copyMarks.Size = new System.Drawing.Size(127, 22);
-            this.copyMarks.Text = "Скопировать данные";
+            this.copyMarks.Size = new System.Drawing.Size(126, 22);
+            this.copyMarks.Text = "Скопировать оценки";
             this.copyMarks.Click += new System.EventHandler(this.copyMarks_Click);
             // 
-            // webBrowser1
+            // toolStripSeparator2
             // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // scaleValue
+            // 
+            this.scaleValue.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.scaleValue.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scaleItemsValue});
+            this.scaleValue.Image = ((System.Drawing.Image)(resources.GetObject("scaleValue.Image")));
+            this.scaleValue.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.scaleValue.Name = "scaleValue";
+            this.scaleValue.Size = new System.Drawing.Size(72, 22);
+            this.scaleValue.Text = "Масштаб";
+            // 
+            // scaleItemsValue
+            // 
+            this.scaleItemsValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.scaleItemsValue.Items.AddRange(new object[] {
+            "25%",
+            "50%",
+            "75%",
+            "100%",
+            "125%",
+            "150%",
+            "175%",
+            "200%"});
+            this.scaleItemsValue.Name = "scaleItemsValue";
+            this.scaleItemsValue.Size = new System.Drawing.Size(121, 23);
+            this.scaleItemsValue.Text = "100%";
+            this.scaleItemsValue.SelectedIndexChanged += new System.EventHandler(this.scaleValueChanged);
+            // 
+            // dnevnikWeb
+            // 
+            this.dnevnikWeb.AcceptLanguage = null;
+            this.dnevnikWeb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(12, 28);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1053, 713);
-            this.webBrowser1.TabIndex = 1;
-            this.webBrowser1.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.webBrowser1_Navigated);
+            this.dnevnikWeb.AudioMuted = null;
+            this.dnevnikWeb.BrowserType = DotNetBrowser.BrowserType.HEAVYWEIGHT;
+            this.dnevnikWeb.InitialFocusOwner = false;
+            this.dnevnikWeb.Location = new System.Drawing.Point(12, 28);
+            this.dnevnikWeb.Name = "dnevnikWeb";
+            this.dnevnikWeb.Preferences = null;
+            this.dnevnikWeb.Size = new System.Drawing.Size(1071, 492);
+            this.dnevnikWeb.TabIndex = 1;
+            this.dnevnikWeb.URL = null;
+            this.dnevnikWeb.ZoomLevel = null;
             // 
             // dnevnikWebBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 753);
-            this.Controls.Add(this.webBrowser1);
+            this.ClientSize = new System.Drawing.Size(1095, 532);
+            this.Controls.Add(this.dnevnikWeb);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "dnevnikWebBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "dnevnikWebBrowser";
+            this.Text = "Браузер";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -149,7 +192,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton openSite;
         private System.Windows.Forms.ToolStripButton copyMarks;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.ToolStripButton updatePage;
+        private DotNetBrowser.WinForms.WinFormsBrowserView dnevnikWeb;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripDropDownButton scaleValue;
+        private System.Windows.Forms.ToolStripComboBox scaleItemsValue;
     }
 }

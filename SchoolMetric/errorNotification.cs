@@ -22,28 +22,28 @@ namespace SchoolMetric
 
         private void textBox2_Enter(object sender, EventArgs e)
         {
-            if (textBox2.Text == "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...")
+            if (message.Text == "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...")
             {
-                textBox2.ForeColor = Color.Black;
-                textBox2.Text = "";
+                message.ForeColor = Color.Black;
+                message.Text = "";
             }
         }
 
         private void textBox2_Leave(object sender, EventArgs e)
         {
-            if (textBox2.Text == "")
+            if (message.Text == "")
             {
-                textBox2.ForeColor = Color.Gray;
-                textBox2.Text = "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...";
+                message.ForeColor = Color.Gray;
+                message.Text = "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...";
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text == "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...")
+            if (message.Text == "Постарайтесь здесь подробно описать ошибку или проблему которая возникла у Вас при работе программы. Или напишите здесь ваши пожелания и комментарии...")
             {
-                textBox2.ForeColor = Color.Black;
-                textBox2.Text = "";
+                message.ForeColor = Color.Black;
+                message.Text = "";
             }
 
             try
@@ -51,18 +51,18 @@ namespace SchoolMetric
                 MailAddress from = new MailAddress("metricschool.report@gmail.com");
                 MailAddress to = new MailAddress("v.veber@me.com");
                 MailMessage m = new MailMessage(from, to);
-                m.Subject = textBox1.Text;
+                m.Subject = mailHeader.Text;
                 m.IsBodyHtml = false;
-                m.Body = textBox2.Text + "\n\n\n\nАдрес для ответа:   " + textBox3.Text;
+                m.Body = message.Text + "\n\n\n\nАдрес для ответа:   " + fromEmail.Text;
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
                 {
                     Credentials = new NetworkCredential("metricschool.report@gmail.com", "0SUeCVmzsIv*kwgj&pGJ6J&7GH!6ivHRc457"),
                     EnableSsl = true
                 };
 
-                for (int i = 0; i < comboBox1.Items.Count; i++)
+                for (int i = 0; i < attachments.Items.Count; i++)
                 {
-                    Attachment attach = new Attachment(comboBox1.Items[i].ToString(), MediaTypeNames.Application.Octet);
+                    Attachment attach = new Attachment(attachments.Items[i].ToString(), MediaTypeNames.Application.Octet);
                     m.Attachments.Add(attach);
                 }
 
@@ -73,7 +73,7 @@ namespace SchoolMetric
             catch (FormatException)
             {
                 MessageBox.Show("Неверный формат электронной почты. Почта должна иметь окончания - @gmail/yandex/mail/bk/list и другие");
-                textBox1.Text = "";
+                mailHeader.Text = "";
             }
             catch (ArgumentException)
             {
@@ -88,7 +88,7 @@ namespace SchoolMetric
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Items.Count < 10) {
+            if (attachments.Items.Count < 10) {
                 OpenFileDialog openFile = new OpenFileDialog();
 
                 openFile.Filter = "png Файл (*.png)|*.png|jpg Файл (*.jpg)|*.jpg|Все файлы (*.*)|*.*";
@@ -100,10 +100,10 @@ namespace SchoolMetric
                 {
                     for (int i = 0; i < openFile.FileNames.Length; i++)
                     {
-                        comboBox1.Items.Add(openFile.FileNames[i]);
+                        attachments.Items.Add(openFile.FileNames[i]);
                     }
 
-                    comboBox1.SelectedIndex = 0;
+                    attachments.SelectedIndex = 0;
                 }
             }
             else
@@ -114,14 +114,9 @@ namespace SchoolMetric
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Items.Count > 0)
+            if (attachments.SelectedIndex != -1)
             {
-                comboBox1.Items.RemoveAt(comboBox1.SelectedIndex);
-                comboBox1.Text = "";
-                if (comboBox1.Items.Count > 0)
-                {
-                    comboBox1.SelectedIndex = 0;
-                }
+                attachments.Items.RemoveAt(attachments.SelectedIndex);
             }
         }
     }

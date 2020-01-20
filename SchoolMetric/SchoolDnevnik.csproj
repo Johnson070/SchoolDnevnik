@@ -63,6 +63,18 @@
     <Reference Include="AngleSharp, Version=0.13.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.13.0\lib\net46\AngleSharp.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetBrowser, Version=1.21.2.0, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetBrowser.1.21.2\lib\DotNetBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Chromium32, Version=1.21.2.0, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetBrowser.1.21.2\lib\DotNetBrowser.Chromium32.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Chromium64, Version=1.21.2.0, Culture=neutral, PublicKeyToken=b0b5aaca9c95c84e, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetBrowser.1.21.2\lib\DotNetBrowser.Chromium64.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetBrowser.Helper">
+      <HintPath>D:\Downloads\[FTUApps.com] - TeamDev DotNetBrowser v1.21.2 + Patcher\Crack\DotNetBrowser.Helper.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -226,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8-журнал-100.ico" />
+    <EmbeddedResource Include="teamdev.licenses" />
     <None Include="Resources\iconfinder_sync_126579.png" />
     <None Include="Resources\iconfinder_icon-ios7-arrow-forward_211688.png" />
     <None Include="Resources\iconfinder_icon-ios7-arrow-back_211686.png" />
