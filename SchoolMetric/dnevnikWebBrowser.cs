@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
+using DotNetBrowser;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +16,19 @@ namespace SchoolMetric
 
             DotNetBrowser.Helper.irDeveloper.ModifyInMemory.ActivateMemoryPatching();
 
-            dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
+            //Browser browser = BrowserFactory.Create();
 
-            dnevnikWeb.Browser.ZoomEnabled = true;
+            //// Load "http://www.google.com" URL
+            //browser.LoadURL("http://www.google.com");
+
+            //// Dispose Browser instance.
+            //browser.Dispose();
+
+            //DotNetBrowser.BrowserFactory.Create();
+
+            //dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
+
+            //dnevnikWeb.Browser.ZoomEnabled = true;
         }
 
         public List<string> marks = new List<string>();
@@ -138,6 +149,11 @@ namespace SchoolMetric
             }
 
             dnevnikWeb.Browser.ZoomLevel = scaleZoom / 100;
+        }
+
+        private void dnevnikWebBrowser_Shown(object sender, EventArgs e)
+        {
+            
         }
     }
 }

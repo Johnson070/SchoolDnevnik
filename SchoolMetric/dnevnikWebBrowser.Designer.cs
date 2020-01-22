@@ -177,6 +177,7 @@
             this.Name = "dnevnikWebBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Браузер";
+            this.Shown += new System.EventHandler(this.dnevnikWebBrowser_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
