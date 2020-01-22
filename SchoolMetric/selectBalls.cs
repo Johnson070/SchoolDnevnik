@@ -549,10 +549,13 @@ namespace SchoolMetric
                                 {
                                     dataGridView1.Rows.RemoveAt(i);
                                     startNew = true;
+                                    goto A;
                                 }
                             }
                         }
                     }
+
+                    A:
 
                     if (startNew) i = -1;
                 }

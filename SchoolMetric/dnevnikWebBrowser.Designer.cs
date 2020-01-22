@@ -151,16 +151,14 @@
             // dnevnikWeb
             // 
             this.dnevnikWeb.AcceptLanguage = null;
-            this.dnevnikWeb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dnevnikWeb.AudioMuted = null;
             this.dnevnikWeb.BrowserType = DotNetBrowser.BrowserType.HEAVYWEIGHT;
+            this.dnevnikWeb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dnevnikWeb.InitialFocusOwner = false;
-            this.dnevnikWeb.Location = new System.Drawing.Point(12, 28);
+            this.dnevnikWeb.Location = new System.Drawing.Point(0, 25);
             this.dnevnikWeb.Name = "dnevnikWeb";
             this.dnevnikWeb.Preferences = null;
-            this.dnevnikWeb.Size = new System.Drawing.Size(1071, 492);
+            this.dnevnikWeb.Size = new System.Drawing.Size(1095, 507);
             this.dnevnikWeb.TabIndex = 1;
             this.dnevnikWeb.URL = null;
             this.dnevnikWeb.ZoomLevel = null;
@@ -177,6 +175,7 @@
             this.Name = "dnevnikWebBrowser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Браузер";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dnevnikWebBrowser_FormClosing);
             this.Shown += new System.EventHandler(this.dnevnikWebBrowser_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -194,9 +193,9 @@
         private System.Windows.Forms.ToolStripButton openSite;
         private System.Windows.Forms.ToolStripButton copyMarks;
         private System.Windows.Forms.ToolStripButton updatePage;
-        private DotNetBrowser.WinForms.WinFormsBrowserView dnevnikWeb;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripDropDownButton scaleValue;
         private System.Windows.Forms.ToolStripComboBox scaleItemsValue;
+        private DotNetBrowser.WinForms.WinFormsBrowserView dnevnikWeb;
     }
 }

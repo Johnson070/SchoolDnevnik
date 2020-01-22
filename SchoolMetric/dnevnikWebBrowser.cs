@@ -1,15 +1,17 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using DotNetBrowser;
+using DotNetBrowser.WinForms;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows.Forms;
 
 namespace SchoolMetric
 {
     public partial class dnevnikWebBrowser : Form
     {
+
+        private readonly BrowserView browserView;
         public dnevnikWebBrowser()
         {
             InitializeComponent();
@@ -26,9 +28,9 @@ namespace SchoolMetric
 
             //DotNetBrowser.BrowserFactory.Create();
 
-            //dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
+            dnevnikWeb.URL = "https://login.dnevnik.ru/login/";
 
-            //dnevnikWeb.Browser.ZoomEnabled = true;
+            dnevnikWeb.Browser.ZoomEnabled = true;
         }
 
         public List<string> marks = new List<string>();
@@ -154,6 +156,15 @@ namespace SchoolMetric
         private void dnevnikWebBrowser_Shown(object sender, EventArgs e)
         {
             
+        }
+
+        private void dnevnikWebBrowser_FormClosing(object sender, FormClosingEventArgs e)
+        { 
+            if (dnevnikWeb != null)
+            {
+                dnevnikWeb.Dispose();
+                dnevnikWeb.Browser.Dispose();
+            }
         }
     }
 }
