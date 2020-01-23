@@ -1,7 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using DotNetBrowser;
-using DotNetBrowser.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
