@@ -1177,6 +1177,59 @@ namespace SchoolMetric
             }
         }
 
+        void startDownload(String url,string saveFile)
+        {
+            Uri uri = new Uri(url);
+
+            WebClient web = new WebClient();
+            web.DownloadProgressChanged += web_DownloadProgressChanged;
+            web.DownloadFileCompleted += web_DownloadFileCompleted;
+            web.DownloadProgressChanged += webClient_DownloadProgressChanged;
+            web.DownloadFileAsync(uri, saveFile);
+        }
+
+        void webClient_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
+        {
+            try
+            {
+                downloadText.Text = e.ProgressPercentage.ToString() + "%";
+
+                downloadText1.Text = (Convert.ToDouble(e.BytesReceived) / 1024 / 1024).ToString("0,00") + " МБ" + "  /  " + (Convert.ToDouble(e.TotalBytesToReceive) / 1024 / 1024).ToString("0.00") + " МБ";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        void web_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            downloadBar.Value = 0;
+            downloadText.Text = "";
+            downloadText1.Text = "";
+
+            MessageBox.Show("Загрузка обновления завершена!\n\nПрограмма будет закрыта и будет запущен установщик обновления.", "Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (!Properties.Settings.Default.portableVersion)
+            {
+                Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Setup.exe"));
+            }
+            else
+            {
+                Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SchoolMetric_portable" + ".exe"));
+            }
+
+            Properties.Settings.Default.change_log = true;
+            Properties.Settings.Default.Save();
+
+            Application.Exit();
+        }
+
+        void web_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            downloadBar.Value = e.ProgressPercentage;
+        }
+
         private void checkUpdate(bool check)
         {
             if (IsInternetAvailable())
@@ -1184,8 +1237,20 @@ namespace SchoolMetric
                 using (WebClient Client = new WebClient())
                 {
                     Client.DownloadFile("https://drive.google.com/uc?export=download&id=1IP0sA73W3Fhkx5u-_C44dstelFNMiiVN", Path.Combine(Path.GetTempPath(), "version.txt"));
+                    Client.DownloadFile("https://drive.google.com/uc?id=19scFrWwmgBZUQEsIIl_3_FwL-PH35B7w", Path.Combine(Path.GetTempPath(), "link.txt"));
                 }
                 string vers = File.ReadAllText(Path.Combine(Path.GetTempPath(), "version.txt"));
+                string link = "";
+
+                if (!Properties.Settings.Default.portableVersion)
+                {
+                    link = File.ReadAllLines(Path.Combine(Path.GetTempPath(), "link.txt"))[0];
+                }
+                else
+                {
+                    link = File.ReadAllLines(Path.Combine(Path.GetTempPath(), "link.txt"))[1];
+                }
+
                 if (String.Equals(vers, Application.ProductVersion))
                 {
                     if (check == true)
@@ -1209,26 +1274,26 @@ namespace SchoolMetric
 
                         if (!Properties.Settings.Default.portableVersion)
                         {
-                            webClient.DownloadFile("https://drive.google.com/uc?export=download&id=1KDEClWYHJ6iK0kQb3kvFCRrEhruJ1UPF", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Setup.exe"));
+                            //Uri uri = new Uri(link); // Замените на свой uri файла
+                            //webClient.DownloadFileAsync(uri, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Setup.exe")); // Замените на свой путь для скачивания файла
+                            //webClient.DownloadProgressChanged += new System.Net.DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
+                            //webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
+                            ////System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                            //sw.Start();
+
+                            startDownload(link, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Setup.exe"));
                         }
                         else
                         {
-                            webClient.DownloadFile("https://drive.google.com/uc?export=download&id=1EFU8OMmtqteYuRek4X6zlkkPJn_EdqlF", Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SchoolMetric_v." + vers + ".exe"));
-                        }
+                            //Uri uri = new Uri(link); // Замените на свой uri файла
+                            //webClient.DownloadFileAsync(uri, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SchoolMetric_v." + vers + ".exe")); // Замените на свой путь для скачивания файла
+                            //webClient.DownloadProgressChanged += new System.Net.DownloadProgressChangedEventHandler(webClient_DownloadProgressChanged);
+                            //webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(webClient_DownloadFileCompleted);
+                            ////System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                            //sw.Start();
 
-                        if (!Properties.Settings.Default.portableVersion)
-                        {
-                            Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Setup.exe"));
+                            startDownload(link, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SchoolMetric_v." + vers + ".exe"));
                         }
-                        else
-                        {
-                            Process.Start(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SchoolMetric_v." + vers + ".exe"));
-                        }
-
-                        Properties.Settings.Default.change_log = true;
-                        Properties.Settings.Default.Save();
-
-                        Application.Exit();
                     }
                     if (result == DialogResult.No)
                     {

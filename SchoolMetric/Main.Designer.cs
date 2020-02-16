@@ -84,9 +84,14 @@
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutProgramBox = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.downloadBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.downloadText = new System.Windows.Forms.ToolStripStatusLabel();
+            this.downloadText1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.marksTable)).BeginInit();
             this.rightClickActions.SuspendLayout();
             this.toolActions.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // marksTable
@@ -101,7 +106,7 @@
             this.marksTable.Location = new System.Drawing.Point(12, 28);
             this.marksTable.MultiSelect = false;
             this.marksTable.Name = "marksTable";
-            this.marksTable.Size = new System.Drawing.Size(920, 681);
+            this.marksTable.Size = new System.Drawing.Size(920, 668);
             this.marksTable.TabIndex = 0;
             this.marksTable.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
             this.marksTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
@@ -272,7 +277,7 @@
             // 
             this.openFile.Name = "openFile";
             this.openFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openFile.Size = new System.Drawing.Size(180, 22);
+            this.openFile.Size = new System.Drawing.Size(172, 22);
             this.openFile.Text = "Открыть";
             this.openFile.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
             // 
@@ -280,7 +285,7 @@
             // 
             this.saveFile.Name = "saveFile";
             this.saveFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveFile.Size = new System.Drawing.Size(180, 22);
+            this.saveFile.Size = new System.Drawing.Size(172, 22);
             this.saveFile.Text = "Сохранить";
             this.saveFile.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
@@ -510,12 +515,40 @@
             this.aboutProgramBox.Text = "О программе";
             this.aboutProgramBox.Click += new System.EventHandler(this.aboutProgram);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadBar,
+            this.downloadText,
+            this.downloadText1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 699);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(944, 22);
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // downloadBar
+            // 
+            this.downloadBar.Name = "downloadBar";
+            this.downloadBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // downloadText
+            // 
+            this.downloadText.Name = "downloadText";
+            this.downloadText.Size = new System.Drawing.Size(0, 17);
+            // 
+            // downloadText1
+            // 
+            this.downloadText1.Name = "downloadText1";
+            this.downloadText1.Size = new System.Drawing.Size(0, 17);
+            // 
             // Main
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 721);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolActions);
             this.Controls.Add(this.marksTable);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -529,6 +562,8 @@
             this.rightClickActions.ResumeLayout(false);
             this.toolActions.ResumeLayout(false);
             this.toolActions.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -589,6 +624,10 @@
         private System.Windows.Forms.ToolStripMenuItem correctTableMenu;
         private System.Windows.Forms.ToolStripMenuItem dnevnikCopyMarksTool;
         private System.Windows.Forms.ToolStripMenuItem insertMarksDnevnikMenu;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar downloadBar;
+        private System.Windows.Forms.ToolStripStatusLabel downloadText;
+        private System.Windows.Forms.ToolStripStatusLabel downloadText1;
     }
 }
 
